@@ -4,14 +4,27 @@ version = "0.1.0"
 description = "Final project for the Introduction to Python course, applying Python programming to have a personal finance assistant."
 readme = "README.md"
 authors = [
-    { name = "Your Name", email = "sed.mirzaee@gmail.com" }
+    { name = "Sedigheh Mirzaei", email = "sed.mirzaee@gmail.com" }
 ]
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "jupyterlab>=4.6.3",
+    "numpy>=2.5.3",
+]
 
 [project.scripts]
-personal-finance-assistant = "personal_finance_assistant:main"
+personal-finance-assistant = "personal_finance_assistant.cli:main"
 
 [build-system]
 requires = ["uv_build>=0.12.15,<0.13.0"]
 build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "ipykernel>=7.3.0",
+    "jupyter>=1.1.1",
+    "pip>=26.2.1",
+]
+
+[project.urls]
+Homepage = "https://github.com/sed-mirzaee/Personal-Finance-Assistant"
