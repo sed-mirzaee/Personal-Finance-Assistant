@@ -24,7 +24,11 @@ dev = [
     "ipykernel>=7.3.0",
     "jupyter>=1.1.1",
     "pip>=26.2.1",
+    "pytest>=9.1.1",
 ]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
 
 [project.urls]
 Homepage = "https://github.com/sed-mirzaee/Personal-Finance-Assistant"
