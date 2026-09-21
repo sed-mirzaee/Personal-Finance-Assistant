@@ -1,6 +1,10 @@
 """Tests for the interactive main menu."""
-
 import pytest
+import personal_finance_assistant.settings as st
+
+@pytest.fixture(autouse=True)
+def isolate_settings_file(tmp_path, monkeypatch):
+    monkeypatch.setattr(st, "SETTINGS_FILE", tmp_path / "settings.json")
 
 from personal_finance_assistant.cli import (
     FULL_MENU, GOODBYE, SHORT_MENU, WELCOME, run_main_menu,
@@ -60,3 +64,31 @@ def test_ctrl_c_exits_cleanly(monkeypatch, capsys):
     monkeypatch.setattr("builtins.input", raise_interrupt)
     run_main_menu()
     assert "Goodbye!" in capsys.readouterr().out
+
+
+def test_settings_add_category_flow(monkeypatch, capsys):
+    import personal_finance_assistant.settings as st
+    out = run_with_inputs(
+        monkeypatch, capsys,
+        ["settings", "add-cat", "expense", "pets", "back", "exit"],
+    )
+    assert "successfully added" in out
+    assert "pets" in st.load_settings()["expense_categories"]
+
+
+def test_settings_bad_kind_recovers(monkeypatch, capsys):
+    out = run_with_inputs(
+        monkeypatch, capsys,
+        ["settings", "add-cat", "spending", "pets", "back", "exit"],
+    )
+    assert "Not changed" in out
+
+
+def test_settings_unknown_subcommand(monkeypatch, capsys):
+    out = run_with_inputs(monkeypatch, capsys, ["settings", "blah", "back", "exit"])
+    assert "Unknown choice" in out
+
+
+def test_settings_shows_categories_on_entry(monkeypatch, capsys):
+    out = run_with_inputs(monkeypatch, capsys, ["settings", "back", "exit"])
+    assert "Current settings" in out

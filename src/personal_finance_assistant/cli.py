@@ -1,5 +1,10 @@
 """Command-line interface."""
 
+from personal_finance_assistant.settings import (
+    add_category, format_settings, load_settings,
+    remove_category, save_settings, set_value,
+)
+
 WELCOME = "Welcome to Personal Finance Assistant!"
 GOODBYE = "\nGoodbye!"
 
@@ -10,6 +15,7 @@ SHORT_MENU = "Enter a command, 'help' for the full list, or 'exit' to quit."
 FULL_MENU = """\
 
 Available commands in PFA(Personal Finance Assistant):
+  settings  show settings
   help   show this full list
   exit   quit the program
   """
@@ -38,11 +44,50 @@ def cmd_get_balance():
 def cmd_add_transaction():
     pass
 
+
+
+
+SETTINGS_HELP = """Change settings: 
+    add-cat
+    remove-cat 
+    set 
+    back """
+
+def cmd_settings() -> None:
+
+    # Show the settings, then let the user change them or 'back'.
+    print(format_settings())
+    print(SETTINGS_HELP)
+
+    while True:
+        choice = input(f"pfa-settings> ").strip().lower()
+        try:
+            if choice == "back":
+                break
+
+            elif choice == "add-cat":
+                add_category(input("  income or expense? ").strip().lower(),
+                             input("  new category name: "))
+
+            elif choice == "remove-cat":
+                remove_category(input("  income or expense? ").strip().lower(),
+                                input("  category to remove: "))
+
+            elif choice == "set":
+                set_value(input("  setting name: ").strip(),
+                          input("  new value: ").strip())
+
+            else:
+                print(f"Unknown choice: '{choice}'.")
+                continue
+
+        except ValueError as error:
+            print(f"Not changed: {error}")
+            continue
+
+
 def cmd_show_help():
     print(FULL_MENU)
-
-def cmd_settings():
-    pass
 
 def run_main_menu() -> None:
 
@@ -71,6 +116,9 @@ def run_main_menu() -> None:
 
         elif command == "help":
             cmd_show_help()
+
+        elif command == "settings":
+            cmd_settings()
 
         else:
             print(f"Unknown command: '{command}'. Type 'help' to see the options.")
