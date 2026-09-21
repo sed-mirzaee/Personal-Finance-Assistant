@@ -1,8 +1,4 @@
-
-# Entry point of project
-def main():
-    # Call cli
-    pass
+from personal_finance_assistant.cli import main
 
 if __name__ == "__main__":
     main()

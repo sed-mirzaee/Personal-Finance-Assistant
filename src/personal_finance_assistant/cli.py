@@ -1,3 +1,5 @@
+"""Command-line interface."""
+
 def cmd_show_recommendations():
     pass
 
@@ -29,12 +31,13 @@ def cmd_settings():
     pass
 
 def run_main_menu():
+    print("Hello, here is main menu")
     pass
     # a always true loop for getting command and run commands until exit
 
 # Entry point of project.scripts
 def main():
-    main_menu()
+    run_main_menu()
 
 if __name__ == "__main__":
     main()

@@ -1,7 +1,7 @@
 [project]
 name = "personal-finance-assistant"
 version = "0.1.0"
-description = "Final project for the Introduction to Python course, applying Python programming to have a personal finance assistant."
+description = "Final project for the Introduction to Python course. A simple tool to track transactions, keep an account balance, and get simple savings/investment suggestions."
 readme = "README.md"
 authors = [
     { name = "Sedigheh Mirzaei", email = "sed.mirzaee@gmail.com" }
