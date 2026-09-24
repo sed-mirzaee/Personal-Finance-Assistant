@@ -6,6 +6,10 @@ from personal_finance_assistant.settings import (
     remove_category, save_settings, set_value,
 )
 
+@pytest.fixture(autouse=True)
+def isolate_settings_file(tmp_path, monkeypatch):
+    monkeypatch.setattr(st, "SETTINGS_FILE", tmp_path / "settings.json")
+
 
 def test_load_creates_file_on_first_call():
     assert not st.SETTINGS_FILE.exists()

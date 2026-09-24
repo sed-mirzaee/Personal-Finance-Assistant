@@ -12,9 +12,15 @@ DEFAULT_SETTINGS = {
         "rent", "groceries", "transport", "insurance", "subscriptions",
         "leisure", "health", "education", "savings", "other",
     ],
-    "monthly_expense_limit": 0.0,  # 0 = no limit
-    "report_months": 3,            # default number of months in reports
+    "monthly_expense_limit": 0.0,       # 0 = no limit
+    "report_months": 3,                 # default number of months in reports
+    "recurring_min_interval_days": 25,  # shortest gap still counted as "monthly"
+    "recurring_max_interval_days": 35,  # longest gap still counted as "monthly"
+    "recurring_amount_tolerance": 0.15, # allowed amount variation, e.g. 0.15 = 15%
+    "low_savings_rate": 0.10,           # below this share of income, warn to save more
+    "high_spending_share": 0.30,        # above this share of income, flag the category
 }
+
 REQUIRED_CATEGORY = "other"        # can never be removed
 
 
