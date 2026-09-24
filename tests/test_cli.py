@@ -7,7 +7,11 @@ import pytest
 import personal_finance_assistant.account as ac
 import personal_finance_assistant.settings as st
 from personal_finance_assistant.cli import (
-    FULL_MENU, GOODBYE, SHORT_MENU, WELCOME, run_main_menu,
+    FULL_MENU,
+    GOODBYE,
+    SHORT_MENU,
+    WELCOME,
+    run_main_menu,
 )
 
 

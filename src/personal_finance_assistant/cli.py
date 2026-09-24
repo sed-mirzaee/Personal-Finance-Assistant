@@ -1,22 +1,28 @@
 """Command-line interface."""
 
-from datetime import date
+from datetime import UTC, date, datetime
 from pathlib import Path
 
 from personal_finance_assistant.account import (
-    add_transaction, delete_transaction, edit_transaction,
-    get_balance, import_csv, load_transactions,
+    add_transaction,
+    delete_transaction,
+    edit_transaction,
+    get_balance,
+    import_csv,
+    load_transactions,
 )
-
-from personal_finance_assistant.data_model import Transaction, validate_transaction
-
-from personal_finance_assistant.settings import (
-    add_category, format_settings, load_settings,
-    remove_category, save_settings, set_value,
-)
-
 from personal_finance_assistant.analysis import (
-    find_recurring_transactions, generate_recommendations, predict_balance,
+    find_recurring_transactions,
+    generate_recommendations,
+    predict_balance,
+)
+from personal_finance_assistant.data_model import Transaction, validate_transaction
+from personal_finance_assistant.settings import (
+    add_category,
+    format_settings,
+    load_settings,
+    remove_category,
+    set_value,
 )
 
 WELCOME = "Welcome to Personal Finance Assistant!"
@@ -106,7 +112,7 @@ def cmd_add_transaction():
 
     date_text = input("  date (YYYY-MM-DD, blank = today): ").strip()
     try:
-        tx_date = date.fromisoformat(date_text) if date_text else date.today()
+        tx_date = date.fromisoformat(date_text) if date_text else datetime.now(UTC).date()
     except ValueError:
         print(f"Not added: date must be YYYY-MM-DD, got '{date_text}'")
         return
@@ -208,7 +214,7 @@ def cmd_settings() -> None:
     print(SETTINGS_HELP)
 
     while True:
-        choice = input(f"pfa-settings> ").strip().lower()
+        choice = input("pfa-settings> ").strip().lower()
         try:
             if choice == "back":
                 break

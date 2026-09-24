@@ -1,10 +1,15 @@
 """Tests for settings.py."""
 import pytest
+
 import personal_finance_assistant.settings as st
 from personal_finance_assistant.settings import (
-    add_category, format_settings, load_settings,
-    remove_category, save_settings, set_value,
+    add_category,
+    format_settings,
+    load_settings,
+    remove_category,
+    set_value,
 )
+
 
 @pytest.fixture(autouse=True)
 def isolate_settings_file(tmp_path, monkeypatch):

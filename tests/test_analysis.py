@@ -1,15 +1,20 @@
 """Tests for analysis.py."""
 
 from datetime import date
+
 import pytest
+
 import personal_finance_assistant.settings as st
+
 
 @pytest.fixture(autouse=True)
 def isolate_settings_file(tmp_path, monkeypatch):
     monkeypatch.setattr(st, "SETTINGS_FILE", tmp_path / "settings.json")
 
 from personal_finance_assistant.analysis import (
-    find_recurring_transactions, generate_recommendations, predict_balance,
+    find_recurring_transactions,
+    generate_recommendations,
+    predict_balance,
 )
 from personal_finance_assistant.data_model import Transaction
 

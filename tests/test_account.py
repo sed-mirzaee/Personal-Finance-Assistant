@@ -6,8 +6,12 @@ import pytest
 
 import personal_finance_assistant.account as ac
 from personal_finance_assistant.account import (
-    add_transaction, delete_transaction, edit_transaction,
-    get_balance, import_csv, load_transactions,
+    add_transaction,
+    delete_transaction,
+    edit_transaction,
+    get_balance,
+    import_csv,
+    load_transactions,
 )
 from personal_finance_assistant.data_model import Transaction
 
