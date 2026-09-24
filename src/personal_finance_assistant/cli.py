@@ -15,6 +15,10 @@ from personal_finance_assistant.settings import (
     remove_category, save_settings, set_value,
 )
 
+from personal_finance_assistant.analysis import (
+    find_recurring_transactions, generate_recommendations, predict_balance,
+)
+
 WELCOME = "Welcome to Personal Finance Assistant!"
 GOODBYE = "\nGoodbye!"
 
@@ -31,19 +35,16 @@ Available commands in PFA (Personal Finance Assistant):
   import     import transactions from a CSV file
   balance    show current balance
   list       show all transactions
+  recurring  detect recurring monthly payments
+  predict    predict balance N months ahead
+  recommend  get savings/spending suggestions
   settings   show and change categories and limits
   help       show this full list
   exit       quit the program
   """
 
 
-def cmd_show_recommendations():
-    pass
-
 def cmd_get_file():
-    pass
-
-def cmd_predict_balance():
     pass
 
 def cmd_show_summary():
@@ -51,6 +52,31 @@ def cmd_show_summary():
 
 def cmd_set_balance():
     pass
+
+def cmd_show_recurring():
+    recurring = find_recurring_transactions()
+    if not recurring:
+        print("No recurring payments detected yet.")
+        return
+    for item in recurring:
+        print(f"{item['type']:7s} {item['category']:15s} avg {item['average_amount']:.2f} "
+              f"every ~{item['average_interval_days']:.0f} days ({item['occurrences']} times)")
+
+
+def cmd_predict_balance():
+    months_text = input("  months ahead (default 1): ").strip()
+    try:
+        months = int(months_text) if months_text else 1
+    except ValueError:
+        print(f"Invalid number of months: '{months_text}'")
+        return
+    predicted = predict_balance(months)
+    print(f"Predicted balance in {months} month(s): {predicted:+.2f}")
+
+
+def cmd_show_recommendations():
+    for line in generate_recommendations():
+        print(f"- {line}")
 
 def cmd_add_transaction():
     settings = load_settings()
@@ -259,6 +285,15 @@ def run_main_menu() -> None:
 
         elif command == "list":
             cmd_get_transactions()
+
+        elif command == "recurring":
+            cmd_show_recurring()
+
+        elif command == "predict":
+            cmd_predict_balance()
+
+        elif command == "recommend":
+            cmd_show_recommendations()
 
         else:
             print(f"Unknown command: '{command}'. Type 'help' to see the options.")

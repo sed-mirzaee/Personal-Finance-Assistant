@@ -168,3 +168,33 @@ def test_import_reads_valid_csv(monkeypatch, capsys, tmp_path):
     out = run_with_inputs(monkeypatch, capsys, ["import", str(source), "balance", "exit"])
     assert "Imported 1 transaction(s)." in out
     assert "Current balance: +1000.00" in out
+
+
+ #--- analysis ------------------------------------------------------------
+
+def test_recurring_shows_messge_when_none_found(monkeypatch, capsys):
+    out = run_with_inputs(monkeypatch, capsys, ["recurring", "exit"])
+    assert "No recurring payments detected yet." in out
+
+
+def test_recurring_detects_pattern(monkeypatch, capsys):
+    from personal_finance_assistant.data_model import Transaction
+    for d in [date(2026, 6, 1), date(2026, 7, 1), date(2026, 8, 1)]:
+        ac.add_transaction(Transaction(d, 650.0, "expense", "rent"))
+    out = run_with_inputs(monkeypatch, capsys, ["recurring", "exit"])
+    assert "rent" in out
+
+
+def test_predict_default_one_month(monkeypatch, capsys):
+    out = run_with_inputs(monkeypatch, capsys, ["predict", "", "exit"])
+    assert "Predicted balance in 1 month(s):" in out
+
+
+def test_predict_rejects_bad_number(monkeypatch, capsys):
+    out = run_with_inputs(monkeypatch, capsys, ["predict", "abc", "exit"])
+    assert "Invalid number of months" in out
+
+
+def test_recommend_no_income_message(monkeypatch, capsys):
+    out = run_with_inputs(monkeypatch, capsys, ["recommend", "exit"])
+    assert "No income recorded yet" in out
