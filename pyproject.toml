@@ -1,6 +1,6 @@
 [project]
 name = "personal-finance-assistant"
-version = "0.1.0"
+version = "1.0.0"
 description = "Final project for the Introduction to Python course. A simple tool to track transactions, keep an account balance, and get simple savings/investment suggestions."
 readme = "README.md"
 authors = [
