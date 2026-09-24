@@ -42,7 +42,6 @@ class Transaction:
         # Amount for computations: positive for income, negative for expense.
         return self.amount if self.type == INCOME else -self.amount
 
-    @staticmethod
     def to_row(self) -> dict:
         # Convert to a dict of strings, ready for csv.DictWriter.
         return {

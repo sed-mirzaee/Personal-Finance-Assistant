@@ -1,5 +1,15 @@
 """Command-line interface."""
 
+from datetime import date
+from pathlib import Path
+
+from personal_finance_assistant.account import (
+    add_transaction, delete_transaction, edit_transaction,
+    get_balance, import_csv, load_transactions,
+)
+
+from personal_finance_assistant.data_model import Transaction, validate_transaction
+
 from personal_finance_assistant.settings import (
     add_category, format_settings, load_settings,
     remove_category, save_settings, set_value,
@@ -14,19 +24,23 @@ SHORT_MENU = "Enter a command, 'help' for the full list, or 'exit' to quit."
 # Menu 2: shown only when the user types 'help'.
 FULL_MENU = """\
 
-Available commands in PFA(Personal Finance Assistant):
-  settings  show settings
-  help   show this full list
-  exit   quit the program
+Available commands in PFA (Personal Finance Assistant):
+  add        add a transaction
+  delete     delete a transaction by id
+  edit       edit a transaction by id
+  import     import transactions from a CSV file
+  balance    show current balance
+  list       show all transactions
+  settings   show and change categories and limits
+  help       show this full list
+  exit       quit the program
   """
+
 
 def cmd_show_recommendations():
     pass
 
 def cmd_get_file():
-    pass
-
-def cmd_get_transactions():
     pass
 
 def cmd_predict_balance():
@@ -38,13 +52,121 @@ def cmd_show_summary():
 def cmd_set_balance():
     pass
 
-def cmd_get_balance():
-    pass
-
 def cmd_add_transaction():
-    pass
+    settings = load_settings()
+    tx_type = input("  income or expense? ").strip().lower()
+    key = f"{tx_type}_categories"
+    if key not in settings:
+        print("Not added: type must be 'income' or 'expense'")
+        return
+
+    print(f"  categories: {', '.join(settings[key])}")
+    category = input("  category: ").strip().lower()
+    if category not in settings[key]:
+        print(f"Not added: '{category}' is not a known {tx_type} category (add it in settings first)")
+        return
+
+    amount_text = input("  amount: ").strip()
+    try:
+        amount = float(amount_text)
+    except ValueError:
+        print(f"Not added: amount must be a number, got '{amount_text}'")
+        return
+
+    errors = validate_transaction(amount, tx_type, category)
+    if errors:
+        print("Not added: " + "; ".join(errors))
+        return
+
+    date_text = input("  date (YYYY-MM-DD, blank = today): ").strip()
+    try:
+        tx_date = date.fromisoformat(date_text) if date_text else date.today()
+    except ValueError:
+        print(f"Not added: date must be YYYY-MM-DD, got '{date_text}'")
+        return
+
+    note = input("  note (optional): ").strip()
+
+    tx = Transaction(tx_date, amount, tx_type, category, note)
+    add_transaction(tx)
+    print(f"Added {tx_type} of {amount:.2f} ({category}) on {tx_date}  [id: {tx.id}]")
 
 
+def cmd_get_transactions():
+    transactions = load_transactions()
+    if not transactions:
+        print("No transactions yet.")
+        return
+    for tx in transactions:
+        print(f"{tx.id}  {tx.date}  {tx.type:7s}  {tx.amount:10.2f}  {tx.category:15s}  {tx.note}")
+
+
+def cmd_delete_transaction():
+    tx_id = input("  id of transaction to delete: ").strip()
+    if delete_transaction(tx_id):
+        print(f"Deleted transaction {tx_id}")
+    else:
+        print(f"Not deleted: no transaction with id '{tx_id}'")
+
+
+def cmd_edit_transaction():
+    tx_id = input("  id of transaction to edit: ").strip()
+    print("  Leave a field blank to keep it unchanged.")
+    changes = {}
+
+    amount_text = input("  new amount: ").strip()
+    if amount_text:
+        try:
+            changes["amount"] = float(amount_text)
+        except ValueError:
+            print(f"Not edited: amount must be a number, got '{amount_text}'")
+            return
+
+    type_text = input("  new type (income/expense): ").strip().lower()
+    if type_text:
+        changes["type"] = type_text
+
+    category_text = input("  new category: ").strip().lower()
+    if category_text:
+        changes["category"] = category_text
+
+    note_text = input("  new note: ").strip()
+    if note_text:
+        changes["note"] = note_text
+
+    if not changes:
+        print("Nothing to change.")
+        return
+
+    try:
+        edited = edit_transaction(tx_id, changes)
+    except ValueError as error:
+        print(f"Not edited: {error}")
+        return
+
+    if edited:
+        print(f"Updated transaction {tx_id}")
+    else:
+        print(f"Not edited: no transaction with id '{tx_id}'")
+
+
+def cmd_import():
+    path = Path(input("  path to CSV file: ").strip())
+
+    if not path.exists():
+        print(f"Not imported: file '{path}' does not exist")
+        return
+
+    added, errors = import_csv(path)
+
+    print(f"Imported {added} transaction(s).")
+
+    for error in errors:
+        print(f"  skipped {error}")
+
+
+def cmd_get_balance():
+    print(f"Current balance: {get_balance():+.2f}")
 
 
 SETTINGS_HELP = """Change settings: 
@@ -119,6 +241,24 @@ def run_main_menu() -> None:
 
         elif command == "settings":
             cmd_settings()
+
+        elif command == "add":
+            cmd_add_transaction()
+
+        elif command == "delete":
+            cmd_delete_transaction()
+
+        elif command == "edit":
+            cmd_edit_transaction()
+
+        elif command == "import":
+            cmd_import()
+
+        elif command == "balance":
+            cmd_get_balance()
+
+        elif command == "list":
+            cmd_get_transactions()
 
         else:
             print(f"Unknown command: '{command}'. Type 'help' to see the options.")

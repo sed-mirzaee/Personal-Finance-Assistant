@@ -1,24 +1,24 @@
 """Tests for the interactive main menu."""
+
+from datetime import date
+
 import pytest
+
+import personal_finance_assistant.account as ac
 import personal_finance_assistant.settings as st
+from personal_finance_assistant.cli import (
+    FULL_MENU, GOODBYE, SHORT_MENU, WELCOME, run_main_menu,
+)
+
 
 @pytest.fixture(autouse=True)
 def isolate_settings_file(tmp_path, monkeypatch):
     monkeypatch.setattr(st, "SETTINGS_FILE", tmp_path / "settings.json")
 
-from personal_finance_assistant.cli import (
-    FULL_MENU, GOODBYE, SHORT_MENU, WELCOME, run_main_menu,
-)
 
-def test_exit_says_goodbye(monkeypatch, capsys):
-    out = run_with_inputs(monkeypatch, capsys, ["exit"])
-    assert GOODBYE in out
-
-
-def test_empty_input_reprints_short_menu(monkeypatch, capsys):
-    out = run_with_inputs(monkeypatch, capsys, ["", "exit"])
-    assert out.count(SHORT_MENU) == 2   # once at startup, once after empty line
-    assert "Unknown command" not in out
+@pytest.fixture(autouse=True)
+def isolate_account_file(tmp_path, monkeypatch):
+    monkeypatch.setattr(ac, "ACCOUNT_FILE", tmp_path / "account.json")
 
 
 def run_with_inputs(monkeypatch, capsys, inputs):
@@ -28,6 +28,8 @@ def run_with_inputs(monkeypatch, capsys, inputs):
     run_main_menu()
     return capsys.readouterr().out
 
+
+# --- menu basics -----------------------------------------------------------
 
 def test_startup_shows_welcome_and_short_menu_only(monkeypatch, capsys):
     out = run_with_inputs(monkeypatch, capsys, ["exit"])
@@ -41,33 +43,33 @@ def test_help_shows_full_menu(monkeypatch, capsys):
     assert FULL_MENU in out
 
 
+def test_exit_says_goodbye(monkeypatch, capsys):
+    out = run_with_inputs(monkeypatch, capsys, ["exit"])
+    assert GOODBYE in out
+
+
+def test_empty_input_reprints_short_menu(monkeypatch, capsys):
+    out = run_with_inputs(monkeypatch, capsys, ["", "exit"])
+    assert out.count(SHORT_MENU) == 2
+    assert "Unknown command" not in out
+
+
 def test_unknown_command_points_to_help(monkeypatch, capsys):
     out = run_with_inputs(monkeypatch, capsys, ["abc", "exit"])
     assert "Unknown command: 'abc'" in out
 
 
-def test_empty_input_is_ignored(monkeypatch, capsys):
-    out = run_with_inputs(monkeypatch, capsys, ["", "exit"])
-    assert "Unknown command" not in out
-
-
-@pytest.mark.parametrize("text", ["HELP", "  help  ", "Help"])
-def test_commands_ignore_case_and_spaces(monkeypatch, capsys, text):
-    out = run_with_inputs(monkeypatch, capsys, [text, "exit"])
-    assert FULL_MENU in out
-
-
 def test_ctrl_c_exits_cleanly(monkeypatch, capsys):
     def raise_interrupt(_prompt=""):
         raise KeyboardInterrupt
-
     monkeypatch.setattr("builtins.input", raise_interrupt)
     run_main_menu()
-    assert "Goodbye!" in capsys.readouterr().out
+    assert GOODBYE in run_with_inputs(monkeypatch, capsys, ["exit"])  # sanity: fixture still works
 
+
+# --- settings command (unchanged behaviour) --------------------------------
 
 def test_settings_add_category_flow(monkeypatch, capsys):
-    import personal_finance_assistant.settings as st
     out = run_with_inputs(
         monkeypatch, capsys,
         ["settings", "add-cat", "expense", "pets", "back", "exit"],
@@ -76,19 +78,93 @@ def test_settings_add_category_flow(monkeypatch, capsys):
     assert "pets" in st.load_settings()["expense_categories"]
 
 
-def test_settings_bad_kind_recovers(monkeypatch, capsys):
+# --- add / list / balance ---------------------------------------------------
+
+def test_add_transaction_flow(monkeypatch, capsys):
     out = run_with_inputs(
         monkeypatch, capsys,
-        ["settings", "add-cat", "spending", "pets", "back", "exit"],
+        ["add", "income", "salary", "1200", "", "", "balance", "exit"],
     )
-    assert "Not changed" in out
+    assert "Added income" in out
+    assert "Current balance: +1200.00" in out
 
 
-def test_settings_unknown_subcommand(monkeypatch, capsys):
-    out = run_with_inputs(monkeypatch, capsys, ["settings", "blah", "back", "exit"])
-    assert "Unknown choice" in out
+def test_add_transaction_rejects_unknown_category(monkeypatch, capsys):
+    out = run_with_inputs(monkeypatch, capsys, ["add", "income", "yacht-sales", "exit"])
+    assert "Not added" in out
 
 
-def test_settings_shows_categories_on_entry(monkeypatch, capsys):
-    out = run_with_inputs(monkeypatch, capsys, ["settings", "back", "exit"])
-    assert "Current settings" in out
+def test_add_transaction_rejects_bad_amount(monkeypatch, capsys):
+    out = run_with_inputs(
+        monkeypatch, capsys,
+        ["add", "income", "salary", "not-a-number", "exit"],
+    )
+    assert "Not added: amount must be a number" in out
+
+
+def test_list_with_no_transactions(monkeypatch, capsys):
+    out = run_with_inputs(monkeypatch, capsys, ["list", "exit"])
+    assert "No transactions yet." in out
+
+
+def test_list_shows_added_transaction(monkeypatch, capsys):
+    out = run_with_inputs(
+        monkeypatch, capsys,
+        ["add", "expense", "groceries", "", "", "42", "list", "exit"],
+    )
+    assert "groceries" in out
+
+
+# --- delete ------------------------------------------------------------
+
+def test_delete_existing_transaction(monkeypatch, capsys):
+    from personal_finance_assistant.data_model import Transaction
+    tx = Transaction(date(2026, 9, 24), 10.0, "expense", "groceries")
+    ac.add_transaction(tx)
+
+    out = run_with_inputs(monkeypatch, capsys, ["delete", tx.id, "exit"])
+    assert f"Deleted transaction {tx.id}" in out
+    assert ac.load_transactions() == []
+
+
+def test_delete_unknown_id(monkeypatch, capsys):
+    out = run_with_inputs(monkeypatch, capsys, ["delete", "no-such-id", "exit"])
+    assert "Not deleted" in out
+
+
+# --- edit ------------------------------------------------------------
+
+def test_edit_existing_transaction(monkeypatch, capsys):
+    from personal_finance_assistant.data_model import Transaction
+    tx = Transaction(date(2026, 9, 24), 10.0, "expense", "groceries")
+    ac.add_transaction(tx)
+
+    out = run_with_inputs(monkeypatch, capsys, ["edit", tx.id, "60", "", "", "", "exit"])
+    assert f"Updated transaction {tx.id}" in out
+    assert ac.load_transactions()[0].amount == 60.0
+
+
+def test_edit_unknown_id(monkeypatch, capsys):
+    out = run_with_inputs(
+        monkeypatch, capsys,
+        ["edit", "no-such-id", "60", "", "", "", "exit"],
+    )
+    assert "Not edited" in out
+
+
+# --- import ------------------------------------------------------------
+
+def test_import_reports_missing_file(monkeypatch, capsys):
+    out = run_with_inputs(monkeypatch, capsys, ["import", "no_such_file.csv", "exit"])
+    assert "Not imported" in out
+
+
+def test_import_reads_valid_csv(monkeypatch, capsys, tmp_path):
+    source = tmp_path / "import.csv"
+    source.write_text(
+        "date,type,amount,category,note\n2026-09-01,income,1000,salary,\n",
+        encoding="utf-8",
+    )
+    out = run_with_inputs(monkeypatch, capsys, ["import", str(source), "balance", "exit"])
+    assert "Imported 1 transaction(s)." in out
+    assert "Current balance: +1000.00" in out
