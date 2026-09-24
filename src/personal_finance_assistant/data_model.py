@@ -53,6 +53,7 @@ class Transaction:
             "note": self.note,
         }
 
+    @staticmethod
     def from_row(row: dict) -> "Transaction":
         # Build a Transaction from a dict of strings, as read by csv.DictReader.
         # Raises ValueError (with all problems joined together) if the row is invalid.
