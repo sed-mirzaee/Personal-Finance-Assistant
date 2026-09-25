@@ -202,3 +202,37 @@ def test_predict_rejects_bad_number(monkeypatch, capsys):
 def test_recommend_no_income_message(monkeypatch, capsys):
     out = run_with_inputs(monkeypatch, capsys, ["recommend", "exit"])
     assert "No income recorded yet" in out
+
+
+# --- charts --------------------------------------------------------------
+
+import pytest
+
+from personal_finance_assistant.charts import plot_balance_over_time
+from personal_finance_assistant.data_model import Transaction
+
+
+def make_tx(day, amount, type_, category="other"):
+    return Transaction(date=day, amount=amount, type=type_, category=category)
+
+
+def test_chart_file_is_created(tmp_path):
+    transactions = [
+        make_tx(date(2026, 1, 1), 1000, "income", "salary"),
+        make_tx(date(2026, 1, 5), 200, "expense", "rent"),
+    ]
+    output_path = tmp_path / "chart.png"
+
+    result = plot_balance_over_time(transactions=transactions, output_path=output_path)
+
+    assert result == output_path
+    assert output_path.exists()
+    assert output_path.stat().st_size > 0
+
+
+def test_chart_handles_no_transactions(tmp_path):
+    output_path = tmp_path / "empty_chart.png"
+
+    plot_balance_over_time(transactions=[], output_path=output_path)
+
+    assert output_path.exists()

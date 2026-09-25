@@ -60,6 +60,7 @@ at any time to see the full list of commands.
 | `recurring` | Detect recurring (repeated, roughly monthly) payments     |
 | `predict`   | Predict your balance a number of months ahead             |
 | `recommend` | Get a text recommendation based on your finances          |
+| `chart`     | Save a chart of your balance over time as a PNG file      |
 | `settings`  | View or change categories and thresholds                  |
 | `help`      | Show the full list of commands                            |
 | `exit`      | Quit the program                                          |

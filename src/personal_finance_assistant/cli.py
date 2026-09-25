@@ -16,6 +16,7 @@ from personal_finance_assistant.analysis import (
     generate_recommendations,
     predict_balance,
 )
+from personal_finance_assistant.charts import DEFAULT_CHART_FILE, plot_balance_over_time
 from personal_finance_assistant.data_model import Transaction, validate_transaction
 from personal_finance_assistant.settings import (
     add_category,
@@ -44,6 +45,7 @@ Available commands in PFA (Personal Finance Assistant):
   recurring  detect recurring monthly payments
   predict    predict balance N months ahead
   recommend  get savings/spending suggestions
+  chart      save a chart of your balance over time as a PNG file
   settings   show and change categories and limits
   help       show this full list
   exit       quit the program
@@ -58,6 +60,13 @@ def cmd_show_summary():
 
 def cmd_set_balance():
     pass
+
+def cmd_show_chart():
+    output_path = input(f"  save chart as (blank = {DEFAULT_CHART_FILE}): ").strip()
+    if not output_path:
+        output_path = DEFAULT_CHART_FILE
+    saved_path = plot_balance_over_time(output_path=output_path)
+    print(f"Chart saved to {saved_path}")
 
 def cmd_show_recurring():
     recurring = find_recurring_transactions()
@@ -300,6 +309,9 @@ def run_main_menu() -> None:
 
         elif command == "recommend":
             cmd_show_recommendations()
+
+        elif command == "chart":
+            cmd_show_chart()
 
         else:
             print(f"Unknown command: '{command}'. Type 'help' to see the options.")
