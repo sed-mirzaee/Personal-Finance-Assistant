@@ -15,7 +15,7 @@ from personal_finance_assistant.account import load_transactions
 DEFAULT_CHART_FILE = "balance_over_time.png"
 
 
-def plot_balance_over_time(transactions=None, output_path=DEFAULT_CHART_FILE):
+def plot_balance_over_time(transactions=None, output_path=DEFAULT_CHART_FILE) -> None:
     """Draw the running balance over time and save it as a PNG file.
 
     If `transactions` is not given, it loads them from the account file.

@@ -52,23 +52,23 @@ Available commands in PFA (Personal Finance Assistant):
   """
 
 
-def cmd_get_file():
+def cmd_get_file() -> None:
     pass
 
-def cmd_show_summary():
+def cmd_show_summary() -> None:
     pass
 
-def cmd_set_balance():
+def cmd_set_balance() -> None:
     pass
 
-def cmd_show_chart():
+def cmd_show_chart() -> None:
     output_path = input(f"  save chart as (blank = {DEFAULT_CHART_FILE}): ").strip()
     if not output_path:
         output_path = DEFAULT_CHART_FILE
     saved_path = plot_balance_over_time(output_path=output_path)
     print(f"Chart saved to {saved_path}")
 
-def cmd_show_recurring():
+def cmd_show_recurring() -> None:
     recurring = find_recurring_transactions()
     if not recurring:
         print("No recurring payments detected yet.")
@@ -78,7 +78,7 @@ def cmd_show_recurring():
               f"every ~{item['average_interval_days']:.0f} days ({item['occurrences']} times)")
 
 
-def cmd_predict_balance():
+def cmd_predict_balance() -> None:
     months_text = input("  months ahead (default 1): ").strip()
     try:
         months = int(months_text) if months_text else 1
@@ -89,11 +89,11 @@ def cmd_predict_balance():
     print(f"Predicted balance in {months} month(s): {predicted:+.2f}")
 
 
-def cmd_show_recommendations():
+def cmd_show_recommendations() -> None:
     for line in generate_recommendations():
         print(f"- {line}")
 
-def cmd_add_transaction():
+def cmd_add_transaction() -> None:
     settings = load_settings()
     tx_type = input("  income or expense? ").strip().lower()
     key = f"{tx_type}_categories"
@@ -133,7 +133,7 @@ def cmd_add_transaction():
     print(f"Added {tx_type} of {amount:.2f} ({category}) on {tx_date}  [id: {tx.id}]")
 
 
-def cmd_get_transactions():
+def cmd_get_transactions() -> None:
     transactions = load_transactions()
     if not transactions:
         print("No transactions yet.")
@@ -142,7 +142,7 @@ def cmd_get_transactions():
         print(f"{tx.id}  {tx.date}  {tx.type:7s}  {tx.amount:10.2f}  {tx.category:15s}  {tx.note}")
 
 
-def cmd_delete_transaction():
+def cmd_delete_transaction() -> None:
     tx_id = input("  id of transaction to delete: ").strip()
     if delete_transaction(tx_id):
         print(f"Deleted transaction {tx_id}")
@@ -150,7 +150,7 @@ def cmd_delete_transaction():
         print(f"Not deleted: no transaction with id '{tx_id}'")
 
 
-def cmd_edit_transaction():
+def cmd_edit_transaction() -> None:
     tx_id = input("  id of transaction to edit: ").strip()
     print("  Leave a field blank to keep it unchanged.")
     changes = {}
@@ -191,7 +191,7 @@ def cmd_edit_transaction():
         print(f"Not edited: no transaction with id '{tx_id}'")
 
 
-def cmd_import():
+def cmd_import() -> None:
     path = Path(input("  path to CSV file: ").strip())
 
     if not path.exists():
@@ -206,7 +206,7 @@ def cmd_import():
         print(f"  skipped {error}")
 
 
-def cmd_get_balance():
+def cmd_get_balance() -> None:
     print(f"Current balance: {get_balance():+.2f}")
 
 
@@ -249,7 +249,7 @@ def cmd_settings() -> None:
             continue
 
 
-def cmd_show_help():
+def cmd_show_help() -> None:
     print(FULL_MENU)
 
 def run_main_menu() -> None:
@@ -317,7 +317,7 @@ def run_main_menu() -> None:
             print(f"Unknown command: '{command}'. Type 'help' to see the options.")
 
 # Entry point of project.scripts
-def main():
+def main() -> None:
     run_main_menu()
 
 if __name__ == "__main__":

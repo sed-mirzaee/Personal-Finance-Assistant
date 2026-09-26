@@ -5,7 +5,7 @@ from personal_finance_assistant.data_model import EXPENSE, INCOME
 from personal_finance_assistant.settings import load_settings
 
 
-def group_by_type_and_category(transactions):
+def group_by_type_and_category(transactions) -> None:
     # Returns a dict like {("expense", "rent"): [tx1, tx2, ...], ...}
     groups = {}
     for tx in transactions:
@@ -16,7 +16,7 @@ def group_by_type_and_category(transactions):
     return groups
 
 
-def find_recurring_transactions(transactions=None, settings=None):
+def find_recurring_transactions(transactions=None, settings=None) -> None:
     # Look through the transactions and find groups (same type + category)
     # that repeat roughly every month with a similar amount.
     if transactions is None:
@@ -63,7 +63,7 @@ def find_recurring_transactions(transactions=None, settings=None):
     return recurring
 
 
-def predict_balance(months_ahead=1, transactions=None, settings=None):
+def predict_balance(months_ahead=1, transactions=None, settings=None) -> None:
     # Estimate the balance N months from now, assuming recurring
     # transactions keep happening at the same amount and pace.
     if transactions is None:
@@ -84,7 +84,7 @@ def predict_balance(months_ahead=1, transactions=None, settings=None):
     return round(predicted, 2)
 
 
-def generate_recommendations(transactions=None, settings=None):
+def generate_recommendations(transactions=None, settings=None) -> None:
     # Simple rule-based suggestions about saving and spending.
     if transactions is None:
         transactions = load_transactions()
