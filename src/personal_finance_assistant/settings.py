@@ -19,6 +19,7 @@ DEFAULT_SETTINGS = {
     "recurring_amount_tolerance": 0.15, # allowed amount variation, e.g. 0.15 = 15%
     "low_savings_rate": 0.10,           # below this share of income, warn to save more
     "high_spending_share": 0.30,        # above this share of income, flag the category
+    "forecast_months": 3,               # months ahead shown in the forecast chart
 }
 
 REQUIRED_CATEGORY = "other"        # can never be removed

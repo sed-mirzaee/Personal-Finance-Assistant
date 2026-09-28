@@ -16,7 +16,7 @@ from personal_finance_assistant.analysis import (
     generate_recommendations,
     predict_balance,
 )
-from personal_finance_assistant.charts import DEFAULT_CHART_FILE, plot_balance_over_time
+from personal_finance_assistant.charts import create_all_charts
 from personal_finance_assistant.data_model import Transaction, validate_transaction
 from personal_finance_assistant.settings import (
     add_category,
@@ -61,12 +61,9 @@ def cmd_show_summary() -> None:
 def cmd_set_balance() -> None:
     pass
 
-def cmd_show_chart() -> None:
-    output_path = input(f"  save chart as (blank = {DEFAULT_CHART_FILE}): ").strip()
-    if not output_path:
-        output_path = DEFAULT_CHART_FILE
-    saved_path = plot_balance_over_time(output_path=output_path)
-    print(f"Chart saved to {saved_path}")
+def cmd_show_chart():
+    for path in create_all_charts():
+        print(f"Chart saved to {path}")
 
 def cmd_show_recurring() -> None:
     recurring = find_recurring_transactions()

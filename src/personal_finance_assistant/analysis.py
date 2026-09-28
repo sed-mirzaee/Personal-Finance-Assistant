@@ -136,3 +136,28 @@ def generate_recommendations(transactions=None, settings=None) -> None:
         recommendations.append("Your finances look balanced. Keep it up!")
 
     return recommendations
+
+def average_monthly_expense_by_category(transactions=None):
+    # Average monthly spending per expense category.
+    # Total per category is divided by the number of months the data covers
+    # (first to last transaction month, inclusive), so a category that
+    # appears only once is not treated as if it happened every month.
+    # Returns a dict like {"rent": 650.0, "groceries": 210.5, ...}
+    if transactions is None:
+        transactions = load_transactions()
+    if not transactions:
+        return {}
+
+    dates = [tx.date for tx in transactions]
+    first, last = min(dates), max(dates)
+    month_count = (last.year - first.year) * 12 + (last.month - first.month) + 1
+
+    totals = {}
+    for tx in transactions:
+        if tx.type == EXPENSE:
+            totals[tx.category] = totals.get(tx.category, 0) + tx.amount
+
+    averages = {}
+    for category, total in totals.items():
+        averages[category] = round(total / month_count, 2)
+    return averages

@@ -12,6 +12,7 @@ def isolate_settings_file(tmp_path, monkeypatch):
     monkeypatch.setattr(st, "SETTINGS_FILE", tmp_path / "settings.json")
 
 from personal_finance_assistant.analysis import (
+    average_monthly_expense_by_category,
     find_recurring_transactions,
     generate_recommendations,
     predict_balance,
@@ -120,3 +121,21 @@ def test_balanced_finances_give_positive_message():
     settings = {"monthly_expense_limit": 0}
     messages = generate_recommendations(transactions, settings)
     assert messages == ["Your finances look balanced. Keep it up!"]
+
+def test_average_monthly_expense_by_category():
+    transactions = [
+        Transaction(date(2026, 6, 1), 600.0, "expense", "rent"),
+        Transaction(date(2026, 7, 1), 600.0, "expense", "rent"),
+        Transaction(date(2026, 8, 1), 600.0, "expense", "rent"),
+        Transaction(date(2026, 7, 15), 300.0, "expense", "health"),  # only once
+        Transaction(date(2026, 6, 1), 1000.0, "income", "salary"),   # ignored
+    ]
+    averages = average_monthly_expense_by_category(transactions)
+
+    assert averages["rent"] == 600.0
+    assert averages["health"] == 100.0  # 300 spread over 3 months
+    assert "salary" not in averages
+
+
+def test_average_monthly_expense_with_no_transactions():
+    assert average_monthly_expense_by_category([]) == {}
