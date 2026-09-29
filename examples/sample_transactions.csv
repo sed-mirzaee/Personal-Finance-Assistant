@@ -1,17 +1,1418 @@
 date,type,amount,category,note
-2026-06-01,income,1200,salary,June salary
-2026-06-02,expense,450,rent,June rent
-2026-06-05,expense,60,groceries,Weekly shopping
-2026-06-10,expense,15,transport,Monthly transit pass
-2026-06-18,expense,80,groceries,Weekly shopping
-2026-06-25,expense,20,leisure,Cinema with friends
-2026-07-01,income,1200,salary,July salary
-2026-07-02,expense,450,rent,July rent
-2026-07-06,expense,65,groceries,Weekly shopping
-2026-07-10,expense,15,transport,Monthly transit pass
-2026-07-20,expense,70,groceries,Weekly shopping
-2026-08-01,income,1200,salary,August salary
-2026-08-02,expense,450,rent,August rent
-2026-08-08,expense,55,groceries,Weekly shopping
-2026-08-10,expense,15,transport,Monthly transit pass
-2026-08-22,expense,90,groceries,Weekly shopping
+2025-12-01,income,1000.0,salary,monthly income
+2025-12-01,expense,129.0,insurance,health insurance
+2025-12-01,expense,0.85,groceries,groceries
+2025-12-01,expense,2.39,groceries,groceries
+2025-12-01,expense,0.48,groceries,groceries
+2025-12-01,expense,2.13,groceries,groceries
+2025-12-03,expense,2.22,health,personal care
+2025-12-03,expense,3.55,health,personal care
+2025-12-03,expense,3.95,health,personal care
+2025-12-03,expense,1.39,health,personal care
+2025-12-03,expense,2.99,groceries,groceries
+2025-12-03,expense,0.85,groceries,groceries
+2025-12-03,expense,1.19,health,personal care
+2025-12-03,expense,2.95,health,personal care
+2025-12-03,expense,3.99,health,personal care
+2025-12-04,expense,2.49,groceries,groceries
+2025-12-04,expense,0.89,groceries,groceries
+2025-12-04,expense,0.37,groceries,groceries
+2025-12-04,expense,2.19,groceries,groceries
+2025-12-04,expense,1.0,groceries,groceries
+2025-12-06,expense,3.0,groceries,groceries
+2025-12-06,expense,2.23,groceries,groceries
+2025-12-06,expense,0.68,groceries,groceries
+2025-12-06,expense,1.0,groceries,groceries
+2025-12-06,expense,1.79,groceries,groceries
+2025-12-06,expense,0.98,groceries,groceries
+2025-12-06,expense,1.69,groceries,groceries
+2025-12-06,expense,1.11,groceries,groceries
+2025-12-06,expense,1.59,groceries,groceries
+2025-12-06,expense,1.58,groceries,groceries
+2025-12-06,expense,1.49,groceries,groceries
+2025-12-06,expense,1.89,groceries,groceries
+2025-12-06,expense,0.79,groceries,groceries
+2025-12-06,expense,1.69,groceries,groceries
+2025-12-06,expense,1.29,groceries,groceries
+2025-12-06,expense,1.79,groceries,groceries
+2025-12-06,expense,1.59,groceries,groceries
+2025-12-06,expense,1.79,groceries,groceries
+2025-12-06,expense,3.59,groceries,groceries
+2025-12-06,expense,1.39,other,household items
+2025-12-06,expense,1.49,other,household items
+2025-12-06,expense,0.99,other,household items
+2025-12-07,expense,10.0,subscriptions,phone and internet
+2025-12-08,expense,2.9,groceries,groceries
+2025-12-09,expense,0.89,groceries,groceries
+2025-12-09,expense,1.25,groceries,groceries
+2025-12-09,expense,2.89,groceries,groceries
+2025-12-09,expense,1.59,groceries,groceries
+2025-12-09,expense,1.99,groceries,groceries
+2025-12-09,expense,0.85,groceries,groceries
+2025-12-09,expense,0.75,groceries,groceries
+2025-12-09,expense,0.59,groceries,groceries
+2025-12-09,expense,1.99,other,household items
+2025-12-11,expense,5.16,subscriptions,online service
+2025-12-11,expense,22.21,other,clothing
+2025-12-12,expense,2.0,groceries,groceries
+2025-12-12,expense,2.13,groceries,groceries
+2025-12-13,expense,1.95,health,personal care
+2025-12-13,expense,1.45,health,personal care
+2025-12-13,expense,1.45,health,personal care
+2025-12-13,expense,0.8,health,personal care
+2025-12-13,expense,0.15,health,personal care
+2025-12-13,expense,6.95,health,personal care
+2025-12-13,expense,22.95,other,clothing
+2025-12-13,expense,22.95,other,clothing
+2025-12-13,expense,0.15,other,household items
+2025-12-13,expense,152.99,other,clothing
+2025-12-13,expense,6.0,groceries,groceries
+2025-12-14,expense,3.99,other,clothing
+2025-12-15,expense,4.5,other,household items
+2025-12-15,expense,1.69,groceries,groceries
+2025-12-15,expense,2.49,groceries,groceries
+2025-12-15,expense,1.15,groceries,groceries
+2025-12-15,expense,1.19,groceries,groceries
+2025-12-15,expense,0.79,groceries,groceries
+2025-12-15,expense,0.79,groceries,groceries
+2025-12-15,expense,0.69,groceries,groceries
+2025-12-15,expense,1.99,groceries,groceries
+2025-12-15,expense,0.85,groceries,groceries
+2025-12-15,expense,0.59,groceries,groceries
+2025-12-15,expense,0.39,groceries,groceries
+2025-12-15,expense,1.59,other,household items
+2025-12-15,expense,1.24,other,household items
+2025-12-15,expense,0.21,other,household items
+2025-12-16,expense,2.88,groceries,groceries
+2025-12-17,expense,56.7,leisure,leisure
+2025-12-17,expense,18.49,transport,train or bus ticket
+2025-12-17,expense,12.47,transport,train or bus ticket
+2025-12-18,expense,25.63,subscriptions,online service
+2025-12-18,expense,0.5,groceries,groceries
+2025-12-19,expense,0.89,groceries,groceries
+2025-12-19,expense,0.49,groceries,groceries
+2025-12-19,expense,0.75,health,personal care
+2025-12-19,expense,16.99,other,household items
+2025-12-19,expense,4.99,groceries,groceries
+2025-12-19,expense,9.99,other,household items
+2025-12-19,expense,2.79,groceries,groceries
+2025-12-19,expense,1.86,groceries,groceries
+2025-12-19,expense,0.59,groceries,groceries
+2025-12-19,expense,0.78,groceries,groceries
+2025-12-19,expense,2.29,groceries,groceries
+2025-12-19,expense,1.29,groceries,groceries
+2025-12-19,expense,1.29,groceries,groceries
+2025-12-19,expense,8.99,other,household items
+2025-12-19,expense,1.49,groceries,groceries
+2025-12-19,expense,3.79,groceries,groceries
+2025-12-19,expense,1.99,groceries,groceries
+2025-12-19,expense,1.99,groceries,groceries
+2025-12-19,expense,0.7,groceries,groceries
+2025-12-19,expense,1.16,groceries,groceries
+2025-12-19,expense,1.79,groceries,groceries
+2025-12-19,expense,0.89,groceries,groceries
+2025-12-19,expense,2.77,groceries,groceries
+2025-12-20,expense,0.99,other,household items
+2025-12-20,expense,0.99,other,household items
+2025-12-20,expense,0.99,other,household items
+2025-12-20,expense,1.25,other,household items
+2025-12-20,expense,1.0,other,household items
+2025-12-20,expense,2.0,other,household items
+2025-12-20,expense,1.0,other,household items
+2025-12-20,expense,2.0,other,gift
+2025-12-20,expense,7.0,other,household items
+2025-12-20,expense,0.99,groceries,groceries
+2025-12-20,expense,2.99,groceries,groceries
+2025-12-20,expense,0.85,groceries,groceries
+2025-12-20,expense,0.75,groceries,groceries
+2025-12-20,expense,0.75,groceries,groceries
+2025-12-20,expense,0.75,groceries,groceries
+2025-12-20,expense,0.39,groceries,groceries
+2025-12-20,expense,0.39,groceries,groceries
+2025-12-20,expense,0.99,groceries,groceries
+2025-12-20,expense,3.99,groceries,groceries
+2025-12-20,expense,1.99,groceries,groceries
+2025-12-20,expense,1.99,groceries,groceries
+2025-12-20,expense,2.23,groceries,groceries
+2025-12-22,expense,3.55,health,personal care
+2025-12-22,expense,3.7,health,personal care
+2025-12-22,expense,1.85,health,personal care
+2025-12-23,expense,1.18,groceries,groceries
+2025-12-23,expense,0.11,groceries,groceries
+2025-12-23,expense,11.22,leisure,leisure
+2025-12-24,expense,2.4,leisure,leisure
+2025-12-24,expense,3.3,other,gift
+2025-12-25,expense,4.9,leisure,leisure
+2025-12-25,expense,2.9,leisure,leisure
+2025-12-25,expense,3.9,leisure,leisure
+2025-12-25,expense,6.9,leisure,leisure
+2025-12-25,expense,2.94,leisure,leisure
+2025-12-25,expense,2.0,leisure,leisure
+2025-12-27,expense,1.98,groceries,groceries
+2025-12-27,expense,1.98,groceries,groceries
+2025-12-27,expense,1.79,groceries,groceries
+2025-12-27,expense,1.29,groceries,groceries
+2025-12-27,expense,2.29,groceries,groceries
+2025-12-27,expense,0.99,groceries,groceries
+2025-12-27,expense,0.79,groceries,groceries
+2025-12-27,expense,1.04,groceries,groceries
+2025-12-27,expense,1.99,groceries,groceries
+2025-12-27,expense,1.17,groceries,groceries
+2025-12-27,expense,0.38,groceries,groceries
+2025-12-27,expense,1.65,groceries,groceries
+2025-12-27,expense,0.06,groceries,groceries
+2025-12-27,expense,0.59,groceries,groceries
+2025-12-27,expense,2.45,health,personal care
+2025-12-27,expense,0.55,groceries,groceries
+2025-12-27,expense,1.25,groceries,groceries
+2025-12-29,expense,0.77,groceries,groceries
+2025-12-29,expense,0.79,groceries,groceries
+2025-12-29,expense,0.79,groceries,groceries
+2025-12-29,expense,3.49,groceries,groceries
+2025-12-29,expense,0.85,groceries,groceries
+2025-12-30,expense,8.9,subscriptions,bank fee
+2026-01-01,income,1000.0,salary,monthly income
+2026-01-01,expense,23.99,other,household items
+2026-01-01,expense,5.99,other,household items
+2026-01-01,expense,9.99,other,household items
+2026-01-01,expense,7.99,other,household items
+2026-01-01,expense,27.18,other,household items
+2026-01-01,expense,10.0,subscriptions,phone and internet
+2026-01-02,expense,3.25,health,personal care
+2026-01-03,expense,3.0,health,personal care
+2026-01-03,expense,1.09,groceries,groceries
+2026-01-03,expense,0.95,groceries,groceries
+2026-01-03,expense,0.85,groceries,groceries
+2026-01-03,expense,1.49,health,personal care
+2026-01-05,expense,1.66,groceries,groceries
+2026-01-05,expense,0.95,groceries,groceries
+2026-01-05,expense,2.99,groceries,groceries
+2026-01-05,expense,9.99,other,clothing
+2026-01-07,expense,129.0,insurance,health insurance
+2026-01-07,expense,4.45,groceries,groceries
+2026-01-07,expense,420.0,rent,monthly rent
+2026-01-09,expense,1.98,groceries,groceries
+2026-01-09,expense,1.98,groceries,groceries
+2026-01-09,expense,0.78,groceries,groceries
+2026-01-09,expense,0.58,groceries,groceries
+2026-01-09,expense,0.45,groceries,groceries
+2026-01-09,expense,2.49,groceries,groceries
+2026-01-09,expense,0.89,groceries,groceries
+2026-01-09,expense,1.29,groceries,groceries
+2026-01-09,expense,10.98,groceries,groceries
+2026-01-09,expense,1.99,groceries,groceries
+2026-01-09,expense,1.99,groceries,groceries
+2026-01-09,expense,1.29,groceries,groceries
+2026-01-09,expense,0.85,groceries,groceries
+2026-01-09,expense,2.59,groceries,groceries
+2026-01-09,expense,1.99,groceries,groceries
+2026-01-09,expense,0.78,groceries,groceries
+2026-01-09,expense,0.81,groceries,groceries
+2026-01-09,expense,0.98,groceries,groceries
+2026-01-09,expense,2.19,groceries,groceries
+2026-01-09,expense,0.01,other,household items
+2026-01-09,expense,0.56,groceries,groceries
+2026-01-09,expense,1.39,groceries,groceries
+2026-01-09,expense,1.49,groceries,groceries
+2026-01-09,expense,1.69,groceries,groceries
+2026-01-09,expense,1.99,health,personal care
+2026-01-09,expense,2.99,other,household items
+2026-01-09,expense,2.99,groceries,groceries
+2026-01-09,expense,0.95,health,personal care
+2026-01-13,expense,1.0,other,household items
+2026-01-13,expense,3.7,health,personal care
+2026-01-13,expense,1.9,other,household items
+2026-01-15,expense,1.15,other,household items
+2026-01-15,expense,1.9,groceries,groceries
+2026-01-15,expense,0.8,groceries,groceries
+2026-01-15,expense,0.5,groceries,groceries
+2026-01-15,expense,1.69,groceries,groceries
+2026-01-15,expense,1.18,groceries,groceries
+2026-01-15,expense,1.11,groceries,groceries
+2026-01-15,expense,1.19,groceries,groceries
+2026-01-16,expense,0.16,other,household items
+2026-01-17,expense,1.75,health,personal care
+2026-01-17,expense,0.95,other,household items
+2026-01-17,expense,0.65,health,personal care
+2026-01-17,expense,3.95,health,personal care
+2026-01-17,expense,3.75,health,personal care
+2026-01-17,expense,3.45,health,personal care
+2026-01-17,expense,0.85,health,personal care
+2026-01-17,expense,6.95,health,personal care
+2026-01-17,expense,1.75,health,personal care
+2026-01-17,expense,1.95,health,personal care
+2026-01-17,expense,1.95,health,personal care
+2026-01-17,expense,1.58,groceries,groceries
+2026-01-17,expense,0.85,groceries,groceries
+2026-01-17,expense,1.99,other,household items
+2026-01-17,expense,1.25,other,household items
+2026-01-17,expense,2.25,groceries,groceries
+2026-01-17,expense,0.99,groceries,groceries
+2026-01-17,expense,1.99,groceries,groceries
+2026-01-17,expense,4.79,groceries,groceries
+2026-01-17,expense,1.49,groceries,groceries
+2026-01-17,expense,7.99,groceries,groceries
+2026-01-17,expense,20.09,groceries,groceries
+2026-01-17,expense,6.39,groceries,groceries
+2026-01-17,expense,1.88,groceries,groceries
+2026-01-17,expense,2.59,groceries,groceries
+2026-01-17,expense,0.99,groceries,groceries
+2026-01-17,expense,3.29,groceries,groceries
+2026-01-17,expense,1.99,groceries,groceries
+2026-01-17,expense,1.29,groceries,groceries
+2026-01-17,expense,2.29,groceries,groceries
+2026-01-17,expense,0.99,groceries,groceries
+2026-01-17,expense,1.49,groceries,groceries
+2026-01-17,expense,1.99,groceries,groceries
+2026-01-17,expense,1.99,groceries,groceries
+2026-01-17,expense,1.78,groceries,groceries
+2026-01-17,expense,0.5,groceries,groceries
+2026-01-17,expense,0.99,groceries,groceries
+2026-01-17,expense,2.97,groceries,groceries
+2026-01-17,expense,0.99,groceries,groceries
+2026-01-17,expense,1.19,groceries,groceries
+2026-01-17,expense,1.58,groceries,groceries
+2026-01-18,expense,21.59,subscriptions,online service
+2026-01-18,expense,5.5,groceries,groceries
+2026-01-18,expense,1.2,groceries,groceries
+2026-01-21,expense,3.8,groceries,groceries
+2026-01-21,expense,0.8,groceries,groceries
+2026-01-21,expense,1.79,groceries,groceries
+2026-01-21,expense,1.89,groceries,groceries
+2026-01-21,expense,1.19,groceries,groceries
+2026-01-21,expense,2.07,groceries,groceries
+2026-01-21,expense,0.79,groceries,groceries
+2026-01-21,expense,1.0,leisure,leisure
+2026-01-21,expense,1.99,groceries,groceries
+2026-01-21,expense,1.99,groceries,groceries
+2026-01-21,expense,1.79,health,personal care
+2026-01-21,expense,3.49,other,household items
+2026-01-21,expense,0.59,health,personal care
+2026-01-22,expense,0.33,groceries,groceries
+2026-01-22,expense,0.85,groceries,groceries
+2026-01-22,expense,6.99,groceries,groceries
+2026-01-22,expense,1.98,groceries,groceries
+2026-01-23,expense,1.95,other,household items
+2026-01-23,expense,2.95,other,household items
+2026-01-23,expense,0.6,other,household items
+2026-01-23,expense,23.95,other,household items
+2026-01-23,expense,67.95,other,household items
+2026-01-23,expense,0.16,other,household items
+2026-01-28,expense,1.99,groceries,groceries
+2026-01-28,expense,1.79,groceries,groceries
+2026-01-28,expense,0.88,groceries,groceries
+2026-01-28,expense,1.42,groceries,groceries
+2026-01-28,expense,0.99,groceries,groceries
+2026-01-28,expense,1.99,groceries,groceries
+2026-01-28,expense,3.49,groceries,groceries
+2026-01-28,expense,0.95,groceries,groceries
+2026-01-28,expense,0.79,groceries,groceries
+2026-01-28,expense,2.49,health,personal care
+2026-01-28,expense,1.98,groceries,groceries
+2026-01-28,expense,2.15,groceries,groceries
+2026-01-28,expense,3.7,health,personal care
+2026-02-01,income,1000.0,salary,monthly income
+2026-02-01,expense,8.9,subscriptions,bank fee
+2026-02-02,expense,321.0,education,tuition fee
+2026-02-02,expense,129.0,insurance,health insurance
+2026-02-03,expense,2.29,groceries,groceries
+2026-02-03,expense,1.39,groceries,groceries
+2026-02-03,expense,0.85,groceries,groceries
+2026-02-04,expense,420.0,rent,monthly rent
+2026-02-04,expense,2.38,groceries,groceries
+2026-02-04,expense,1.15,leisure,leisure
+2026-02-07,expense,2.2,groceries,groceries
+2026-02-07,expense,2.49,groceries,groceries
+2026-02-07,expense,3.79,health,personal care
+2026-02-07,expense,0.59,groceries,groceries
+2026-02-07,expense,1.99,groceries,groceries
+2026-02-07,expense,1.29,groceries,groceries
+2026-02-07,expense,1.52,groceries,groceries
+2026-02-07,expense,1.06,groceries,groceries
+2026-02-07,expense,0.04,other,household items
+2026-02-07,expense,1.19,groceries,groceries
+2026-02-07,expense,0.49,leisure,leisure
+2026-02-07,expense,0.85,other,household items
+2026-02-07,expense,0.25,groceries,groceries
+2026-02-07,expense,1.49,groceries,groceries
+2026-02-07,expense,1.89,groceries,groceries
+2026-02-07,expense,1.89,groceries,groceries
+2026-02-07,expense,0.69,groceries,groceries
+2026-02-07,expense,0.95,groceries,groceries
+2026-02-07,expense,2.59,groceries,groceries
+2026-02-07,expense,4.99,groceries,groceries
+2026-02-07,expense,1.49,groceries,groceries
+2026-02-07,expense,4.11,groceries,groceries
+2026-02-07,expense,0.89,groceries,groceries
+2026-02-07,expense,3.39,other,gift
+2026-02-07,expense,1.98,groceries,groceries
+2026-02-07,expense,0.85,groceries,groceries
+2026-02-07,expense,3.29,groceries,groceries
+2026-02-07,expense,0.89,groceries,groceries
+2026-02-07,expense,1.69,groceries,groceries
+2026-02-07,expense,2.39,groceries,groceries
+2026-02-13,expense,4.25,health,personal care
+2026-02-14,expense,1.59,groceries,groceries
+2026-02-14,expense,0.88,groceries,groceries
+2026-02-14,expense,0.85,groceries,groceries
+2026-02-14,expense,0.99,groceries,groceries
+2026-02-14,expense,1.29,groceries,groceries
+2026-02-14,expense,2.99,groceries,groceries
+2026-02-17,expense,0.79,groceries,groceries
+2026-02-17,expense,1.29,groceries,groceries
+2026-02-17,expense,1.39,groceries,groceries
+2026-02-17,expense,1.92,groceries,groceries
+2026-02-17,expense,1.79,groceries,groceries
+2026-02-17,expense,0.02,other,household items
+2026-02-17,expense,2.49,groceries,groceries
+2026-02-17,expense,0.69,groceries,groceries
+2026-02-17,expense,0.99,groceries,groceries
+2026-02-17,expense,1.99,groceries,groceries
+2026-02-17,expense,1.79,groceries,groceries
+2026-02-17,expense,1.79,groceries,groceries
+2026-02-17,expense,0.99,groceries,groceries
+2026-02-17,expense,2.29,groceries,groceries
+2026-02-17,expense,3.0,health,personal care
+2026-02-18,expense,0.85,groceries,groceries
+2026-02-18,expense,0.09,other,gift
+2026-02-19,expense,3.45,health,personal care
+2026-02-19,expense,4.95,health,personal care
+2026-02-19,expense,0.87,health,personal care
+2026-02-19,expense,0.88,health,personal care
+2026-02-19,expense,1.85,health,personal care
+2026-02-19,expense,1.65,health,personal care
+2026-02-19,expense,0.75,health,personal care
+2026-02-19,expense,1.65,health,personal care
+2026-02-19,expense,1.65,groceries,groceries
+2026-02-19,expense,1.85,groceries,groceries
+2026-02-21,expense,1.5,other,household items
+2026-02-21,expense,1.5,other,household items
+2026-02-21,expense,2.0,other,household items
+2026-02-21,expense,1.0,groceries,groceries
+2026-02-21,expense,3.0,other,household items
+2026-02-21,expense,1.0,other,household items
+2026-02-21,expense,2.5,other,household items
+2026-02-21,expense,6.0,other,clothing
+2026-02-21,expense,6.0,other,clothing
+2026-02-21,expense,4.0,other,household items
+2026-02-21,expense,1.75,other,clothing
+2026-02-21,expense,1.0,other,household items
+2026-02-21,expense,7.0,other,household items
+2026-02-23,expense,1.79,groceries,groceries
+2026-02-23,expense,2.39,groceries,groceries
+2026-02-23,expense,1.19,groceries,groceries
+2026-02-23,expense,1.59,groceries,groceries
+2026-02-23,expense,0.66,groceries,groceries
+2026-02-23,expense,1.69,groceries,groceries
+2026-02-23,expense,1.12,groceries,groceries
+2026-02-23,expense,1.68,groceries,groceries
+2026-02-23,expense,0.85,groceries,groceries
+2026-02-23,expense,1.19,groceries,groceries
+2026-02-23,expense,0.99,groceries,groceries
+2026-02-23,expense,2.79,groceries,groceries
+2026-02-23,expense,2.79,groceries,groceries
+2026-02-23,expense,1.79,groceries,groceries
+2026-02-23,expense,1.99,groceries,groceries
+2026-02-23,expense,0.95,health,personal care
+2026-02-23,expense,0.99,health,personal care
+2026-02-26,expense,2.26,groceries,groceries
+2026-02-26,expense,2.25,groceries,groceries
+2026-02-27,expense,10.0,subscriptions,phone and internet
+2026-02-28,expense,0.85,groceries,groceries
+2026-02-28,expense,1.44,groceries,groceries
+2026-02-28,expense,1.39,groceries,groceries
+2026-02-28,expense,1.99,groceries,groceries
+2026-02-28,expense,0.99,groceries,groceries
+2026-02-28,expense,2.39,groceries,groceries
+2026-02-28,expense,1.99,groceries,groceries
+2026-02-28,expense,0.85,groceries,groceries
+2026-03-01,income,1000.0,salary,monthly income
+2026-03-01,expense,8.9,subscriptions,bank fee
+2026-03-01,expense,129.0,insurance,health insurance
+2026-03-01,expense,4.0,health,personal care
+2026-03-01,expense,18.75,other,clothing
+2026-03-02,expense,1.5,groceries,groceries
+2026-03-02,expense,2.5,groceries,groceries
+2026-03-02,expense,2.79,groceries,groceries
+2026-03-02,expense,4.0,groceries,groceries
+2026-03-02,expense,3.5,groceries,groceries
+2026-03-02,expense,3.8,groceries,groceries
+2026-03-02,expense,5.9,groceries,groceries
+2026-03-02,expense,7.99,groceries,groceries
+2026-03-02,expense,5.0,groceries,groceries
+2026-03-02,expense,5.0,groceries,groceries
+2026-03-02,expense,15.0,groceries,groceries
+2026-03-02,expense,3.5,groceries,groceries
+2026-03-04,expense,420.0,rent,monthly rent
+2026-03-04,expense,0.95,health,personal care
+2026-03-04,expense,0.85,groceries,groceries
+2026-03-04,expense,1.74,groceries,groceries
+2026-03-04,expense,1.29,groceries,groceries
+2026-03-04,expense,13.25,other,clothing
+2026-03-04,expense,19.0,other,clothing
+2026-03-05,expense,0.5,other,household items
+2026-03-07,expense,3.0,other,household items
+2026-03-07,expense,2.0,other,household items
+2026-03-07,expense,4.0,other,household items
+2026-03-07,expense,1.75,other,household items
+2026-03-07,expense,1.0,other,household items
+2026-03-07,expense,4.95,health,personal care
+2026-03-07,expense,4.75,health,personal care
+2026-03-07,expense,1.99,groceries,groceries
+2026-03-07,expense,1.17,groceries,groceries
+2026-03-07,expense,2.19,groceries,groceries
+2026-03-07,expense,0.85,groceries,groceries
+2026-03-07,expense,0.65,groceries,groceries
+2026-03-07,expense,0.89,groceries,groceries
+2026-03-07,expense,0.79,groceries,groceries
+2026-03-07,expense,0.43,groceries,groceries
+2026-03-07,expense,0.89,groceries,groceries
+2026-03-07,expense,5.99,groceries,groceries
+2026-03-07,expense,1.29,groceries,groceries
+2026-03-07,expense,0.79,groceries,groceries
+2026-03-07,expense,1.19,groceries,groceries
+2026-03-07,expense,1.11,groceries,groceries
+2026-03-07,expense,1.59,groceries,groceries
+2026-03-07,expense,1.29,groceries,groceries
+2026-03-07,expense,2.99,groceries,groceries
+2026-03-12,expense,0.85,groceries,groceries
+2026-03-12,expense,1.69,groceries,groceries
+2026-03-12,expense,2.49,groceries,groceries
+2026-03-12,expense,1.19,groceries,groceries
+2026-03-12,expense,3.99,other,household items
+2026-03-14,expense,34.99,other,household items
+2026-03-14,expense,2.79,groceries,groceries
+2026-03-14,expense,2.79,groceries,groceries
+2026-03-14,expense,27.99,other,household items
+2026-03-14,expense,2.49,groceries,groceries
+2026-03-14,expense,1.99,groceries,groceries
+2026-03-14,expense,2.29,groceries,groceries
+2026-03-14,expense,0.79,groceries,groceries
+2026-03-14,expense,0.99,groceries,groceries
+2026-03-14,expense,24.79,groceries,groceries
+2026-03-14,expense,4.65,groceries,groceries
+2026-03-14,expense,13.98,groceries,groceries
+2026-03-14,expense,2.88,groceries,groceries
+2026-03-14,expense,17.54,other,household items
+2026-03-17,expense,2.49,groceries,groceries
+2026-03-17,expense,2.49,groceries,groceries
+2026-03-17,expense,3.39,groceries,groceries
+2026-03-17,expense,2.29,groceries,groceries
+2026-03-17,expense,1.97,groceries,groceries
+2026-03-19,expense,4.29,groceries,groceries
+2026-03-19,expense,0.54,groceries,groceries
+2026-03-19,expense,1.39,groceries,groceries
+2026-03-19,expense,0.79,groceries,groceries
+2026-03-19,expense,1.19,groceries,groceries
+2026-03-19,expense,1.45,groceries,groceries
+2026-03-19,expense,1.69,groceries,groceries
+2026-03-20,expense,1.68,groceries,groceries
+2026-03-20,expense,1.79,groceries,groceries
+2026-03-20,expense,0.58,groceries,groceries
+2026-03-20,expense,2.2,groceries,groceries
+2026-03-20,expense,1.99,groceries,groceries
+2026-03-20,expense,0.95,health,personal care
+2026-03-21,expense,3.0,other,clothing
+2026-03-21,expense,1.5,other,household items
+2026-03-21,expense,6.38,other,household items
+2026-03-21,expense,4.51,groceries,groceries
+2026-03-24,expense,3.5,groceries,groceries
+2026-03-24,expense,1.58,groceries,groceries
+2026-03-24,expense,1.19,groceries,groceries
+2026-03-24,expense,0.79,groceries,groceries
+2026-03-24,expense,1.29,groceries,groceries
+2026-03-25,expense,0.85,groceries,groceries
+2026-03-25,expense,1.99,groceries,groceries
+2026-03-25,expense,4.0,health,personal care
+2026-03-27,expense,2.49,groceries,groceries
+2026-03-27,expense,0.89,groceries,groceries
+2026-03-27,expense,1.29,groceries,groceries
+2026-03-27,expense,2.69,groceries,groceries
+2026-03-27,expense,1.19,groceries,groceries
+2026-03-27,expense,1.59,groceries,groceries
+2026-03-27,expense,1.69,groceries,groceries
+2026-03-27,expense,2.25,groceries,groceries
+2026-03-27,expense,1.29,groceries,groceries
+2026-03-27,expense,0.42,groceries,groceries
+2026-03-27,expense,0.79,groceries,groceries
+2026-03-27,expense,1.0,groceries,groceries
+2026-03-27,expense,1.49,groceries,groceries
+2026-03-27,expense,2.99,groceries,groceries
+2026-03-27,expense,2.69,groceries,groceries
+2026-03-27,expense,10.0,subscriptions,phone and internet
+2026-03-29,expense,5.0,other,household items
+2026-03-30,expense,2.69,groceries,groceries
+2026-03-30,expense,0.74,groceries,groceries
+2026-03-30,expense,0.85,groceries,groceries
+2026-03-30,expense,0.99,groceries,groceries
+2026-03-30,expense,7.29,groceries,groceries
+2026-03-31,expense,8.9,subscriptions,bank fee
+2026-04-01,income,1000.0,salary,monthly income
+2026-04-01,expense,3.5,groceries,groceries
+2026-04-01,expense,2.23,groceries,groceries
+2026-04-01,expense,129.0,insurance,health insurance
+2026-04-02,expense,1.13,groceries,groceries
+2026-04-04,expense,1.5,other,gift
+2026-04-04,expense,20.85,leisure,leisure
+2026-04-07,expense,420.0,rent,monthly rent
+2026-04-07,expense,1.45,health,personal care
+2026-04-07,expense,1.25,health,personal care
+2026-04-07,expense,3.85,health,health
+2026-04-07,expense,1.95,health,personal care
+2026-04-07,expense,3.45,health,personal care
+2026-04-07,expense,0.85,health,personal care
+2026-04-07,expense,0.85,health,personal care
+2026-04-07,expense,1.95,health,personal care
+2026-04-07,expense,0.85,health,personal care
+2026-04-07,expense,4.45,health,personal care
+2026-04-07,expense,9.95,health,health
+2026-04-07,expense,1.95,health,personal care
+2026-04-07,expense,6.95,health,personal care
+2026-04-07,expense,2.95,health,personal care
+2026-04-07,expense,0.85,groceries,groceries
+2026-04-07,expense,1.45,groceries,groceries
+2026-04-07,expense,0.02,other,household items
+2026-04-07,expense,0.99,groceries,groceries
+2026-04-07,expense,0.99,groceries,groceries
+2026-04-07,expense,14.99,other,household items
+2026-04-07,expense,1.69,groceries,groceries
+2026-04-07,expense,0.89,groceries,groceries
+2026-04-07,expense,0.45,groceries,groceries
+2026-04-07,expense,0.77,groceries,groceries
+2026-04-07,expense,1.99,groceries,groceries
+2026-04-07,expense,1.89,groceries,groceries
+2026-04-07,expense,1.99,groceries,groceries
+2026-04-07,expense,1.98,groceries,groceries
+2026-04-07,expense,2.82,groceries,groceries
+2026-04-07,expense,1.99,groceries,groceries
+2026-04-07,expense,1.49,groceries,groceries
+2026-04-07,expense,2.69,groceries,groceries
+2026-04-07,expense,1.49,groceries,groceries
+2026-04-07,expense,1.49,groceries,groceries
+2026-04-07,expense,2.19,groceries,groceries
+2026-04-08,expense,2.49,groceries,groceries
+2026-04-08,expense,0.55,health,personal care
+2026-04-08,expense,14.9,other,household items
+2026-04-08,expense,7.76,other,household items
+2026-04-11,expense,9.98,other,household items
+2026-04-11,expense,1.99,other,household items
+2026-04-11,expense,1.99,other,household items
+2026-04-11,expense,2.49,other,household items
+2026-04-11,expense,1.99,other,household items
+2026-04-11,expense,0.99,other,household items
+2026-04-11,expense,0.49,other,household items
+2026-04-11,expense,0.99,other,household items
+2026-04-11,expense,2.98,other,household items
+2026-04-11,expense,1.99,other,household items
+2026-04-11,expense,1.99,other,household items
+2026-04-11,expense,14.99,other,household items
+2026-04-13,expense,1.69,groceries,groceries
+2026-04-13,expense,1.79,groceries,groceries
+2026-04-13,expense,0.33,groceries,groceries
+2026-04-13,expense,1.79,groceries,groceries
+2026-04-13,expense,0.66,groceries,groceries
+2026-04-13,expense,0.85,groceries,groceries
+2026-04-13,expense,1.89,groceries,groceries
+2026-04-13,expense,2.95,groceries,groceries
+2026-04-13,expense,4.0,health,personal care
+2026-04-15,expense,63.74,other,household items
+2026-04-15,expense,128.52,subscriptions,broadcasting fee
+2026-04-20,expense,0.75,health,personal care
+2026-04-20,expense,1.99,groceries,groceries
+2026-04-20,expense,0.89,groceries,groceries
+2026-04-20,expense,0.85,groceries,groceries
+2026-04-20,expense,0.95,groceries,groceries
+2026-04-20,expense,0.89,groceries,groceries
+2026-04-20,expense,1.0,groceries,groceries
+2026-04-20,expense,2.49,groceries,groceries
+2026-04-20,expense,1.59,groceries,groceries
+2026-04-20,expense,0.85,groceries,groceries
+2026-04-20,expense,1.89,groceries,groceries
+2026-04-20,expense,2.55,groceries,groceries
+2026-04-20,expense,2.69,groceries,groceries
+2026-04-20,expense,0.88,groceries,groceries
+2026-04-20,expense,1.42,groceries,groceries
+2026-04-20,expense,10.0,subscriptions,phone and internet
+2026-04-20,expense,8.99,other,household items
+2026-04-20,expense,5.99,other,household items
+2026-04-20,expense,49.99,other,household items
+2026-04-20,expense,4.95,other,household items
+2026-04-23,expense,3.49,other,household items
+2026-04-23,expense,2.69,other,household items
+2026-04-23,expense,7.79,other,household items
+2026-04-28,expense,8.92,groceries,groceries
+2026-04-28,expense,4.3,groceries,groceries
+2026-04-28,expense,1.85,health,personal care
+2026-04-28,expense,1.75,health,personal care
+2026-04-28,expense,0.95,health,personal care
+2026-04-28,expense,1.45,health,personal care
+2026-04-28,expense,1.95,health,personal care
+2026-04-28,expense,0.85,health,personal care
+2026-04-28,expense,1.95,health,personal care
+2026-04-28,expense,4.95,health,personal care
+2026-04-28,expense,4.45,health,personal care
+2026-04-30,expense,1.18,groceries,groceries
+2026-04-30,expense,1.79,groceries,groceries
+2026-04-30,expense,1.99,groceries,groceries
+2026-04-30,expense,1.29,groceries,groceries
+2026-04-30,expense,0.89,groceries,groceries
+2026-04-30,expense,2.49,groceries,groceries
+2026-04-30,expense,1.29,groceries,groceries
+2026-04-30,expense,0.85,groceries,groceries
+2026-04-30,expense,0.39,groceries,groceries
+2026-04-30,expense,0.29,groceries,groceries
+2026-04-30,expense,0.99,groceries,groceries
+2026-04-30,expense,2.99,groceries,groceries
+2026-04-30,expense,4.49,groceries,groceries
+2026-04-30,expense,0.02,groceries,groceries
+2026-04-30,expense,1.11,groceries,groceries
+2026-04-30,expense,3.79,groceries,groceries
+2026-04-30,expense,3.49,groceries,groceries
+2026-04-30,expense,1.69,groceries,groceries
+2026-04-30,expense,1.79,groceries,groceries
+2026-04-30,expense,1.54,groceries,groceries
+2026-04-30,expense,1.52,groceries,groceries
+2026-04-30,expense,1.0,groceries,groceries
+2026-04-30,expense,0.6,groceries,groceries
+2026-04-30,expense,0.94,groceries,groceries
+2026-04-30,expense,0.39,groceries,groceries
+2026-04-30,expense,1.99,groceries,groceries
+2026-04-30,expense,1.15,groceries,groceries
+2026-04-30,expense,1.99,groceries,groceries
+2026-04-30,expense,1.0,groceries,groceries
+2026-04-30,expense,1.49,groceries,groceries
+2026-04-30,expense,2.49,groceries,groceries
+2026-05-01,income,1000.0,salary,monthly income
+2026-05-01,expense,4.0,health,personal care
+2026-05-01,expense,8.9,subscriptions,bank fee
+2026-05-01,expense,129.0,insurance,health insurance
+2026-05-02,expense,420.0,rent,monthly rent
+2026-05-04,expense,1.69,groceries,groceries
+2026-05-05,expense,3.75,health,personal care
+2026-05-05,expense,4.6,groceries,groceries
+2026-05-05,expense,1.06,groceries,groceries
+2026-05-05,expense,0.88,groceries,groceries
+2026-05-05,expense,1.08,groceries,groceries
+2026-05-05,expense,0.39,groceries,groceries
+2026-05-05,expense,0.85,groceries,groceries
+2026-05-08,expense,1.69,groceries,groceries
+2026-05-08,expense,0.78,groceries,groceries
+2026-05-09,expense,17.0,leisure,leisure
+2026-05-09,expense,3.5,leisure,leisure
+2026-05-09,expense,3.0,leisure,leisure
+2026-05-09,expense,3.99,groceries,groceries
+2026-05-09,expense,4.99,groceries,groceries
+2026-05-09,expense,2.79,groceries,groceries
+2026-05-09,expense,5.99,groceries,groceries
+2026-05-09,expense,3.99,groceries,groceries
+2026-05-09,expense,4.0,leisure,leisure
+2026-05-09,expense,1.99,other,gift
+2026-05-12,expense,4.3,groceries,groceries
+2026-05-13,expense,2.49,groceries,groceries
+2026-05-13,expense,0.99,health,personal care
+2026-05-13,expense,1.99,groceries,groceries
+2026-05-13,expense,1.79,groceries,groceries
+2026-05-13,expense,0.89,groceries,groceries
+2026-05-13,expense,1.0,groceries,groceries
+2026-05-13,expense,0.69,groceries,groceries
+2026-05-13,expense,0.85,groceries,groceries
+2026-05-13,expense,0.85,groceries,groceries
+2026-05-13,expense,0.85,groceries,groceries
+2026-05-13,expense,1.29,groceries,groceries
+2026-05-13,expense,0.02,health,personal care
+2026-05-13,expense,0.89,groceries,groceries
+2026-05-13,expense,0.89,groceries,groceries
+2026-05-13,expense,1.29,groceries,groceries
+2026-05-13,expense,0.89,groceries,groceries
+2026-05-13,expense,1.49,groceries,groceries
+2026-05-13,expense,1.5,groceries,groceries
+2026-05-13,expense,0.99,groceries,groceries
+2026-05-13,expense,0.75,groceries,groceries
+2026-05-13,expense,1.06,groceries,groceries
+2026-05-13,expense,0.83,groceries,groceries
+2026-05-13,expense,0.79,groceries,groceries
+2026-05-13,expense,0.78,groceries,groceries
+2026-05-13,expense,3.19,groceries,groceries
+2026-05-13,expense,6.19,groceries,groceries
+2026-05-15,expense,0.65,groceries,groceries
+2026-05-15,expense,1.99,groceries,groceries
+2026-05-15,expense,1.11,groceries,groceries
+2026-05-15,expense,0.85,groceries,groceries
+2026-05-18,expense,4.0,health,personal care
+2026-05-18,expense,23.0,subscriptions,online service
+2026-05-19,expense,4.6,groceries,groceries
+2026-05-20,expense,1.99,groceries,groceries
+2026-05-20,expense,1.39,groceries,groceries
+2026-05-20,expense,0.63,groceries,groceries
+2026-05-20,expense,0.65,groceries,groceries
+2026-05-20,expense,3.39,groceries,groceries
+2026-05-20,expense,0.85,groceries,groceries
+2026-05-20,expense,1.49,groceries,groceries
+2026-05-21,expense,1.69,groceries,groceries
+2026-05-21,expense,1.6,groceries,groceries
+2026-05-21,expense,0.44,groceries,groceries
+2026-05-22,expense,10.0,subscriptions,phone and internet
+2026-05-23,expense,1.53,groceries,groceries
+2026-05-23,expense,4.3,groceries,groceries
+2026-05-23,expense,5.67,groceries,groceries
+2026-05-23,expense,1.99,groceries,groceries
+2026-05-23,expense,1.49,groceries,groceries
+2026-05-23,expense,2.09,groceries,groceries
+2026-05-23,expense,1.99,groceries,groceries
+2026-05-23,expense,1.79,groceries,groceries
+2026-05-23,expense,1.39,groceries,groceries
+2026-05-23,expense,2.49,groceries,groceries
+2026-05-23,expense,1.29,groceries,groceries
+2026-05-23,expense,1.99,groceries,groceries
+2026-05-23,expense,3.79,groceries,groceries
+2026-05-23,expense,0.99,groceries,groceries
+2026-05-23,expense,4.5,leisure,leisure
+2026-05-26,expense,4.48,groceries,groceries
+2026-05-26,expense,2.0,other,household items
+2026-05-26,expense,2.99,groceries,groceries
+2026-05-26,expense,2.19,groceries,groceries
+2026-05-26,expense,1.05,groceries,groceries
+2026-05-26,expense,3.49,groceries,groceries
+2026-05-27,expense,0.85,groceries,groceries
+2026-05-27,expense,0.7,groceries,groceries
+2026-05-27,expense,0.6,groceries,groceries
+2026-05-28,expense,1.49,other,household items
+2026-05-28,expense,2.0,other,household items
+2026-05-28,expense,1.0,other,gift
+2026-05-28,expense,5.0,other,household items
+2026-05-28,expense,1.55,other,gift
+2026-05-28,expense,4.95,health,personal care
+2026-05-28,expense,1.25,health,personal care
+2026-05-28,expense,4.45,health,personal care
+2026-05-28,expense,9.95,health,personal care
+2026-05-29,expense,8.9,subscriptions,bank fee
+2026-05-29,expense,2.49,groceries,groceries
+2026-05-29,expense,1.29,groceries,groceries
+2026-05-29,expense,0.85,groceries,groceries
+2026-05-29,expense,0.99,groceries,groceries
+2026-05-29,expense,1.19,groceries,groceries
+2026-05-29,expense,0.89,groceries,groceries
+2026-05-29,expense,0.79,groceries,groceries
+2026-05-29,expense,1.0,groceries,groceries
+2026-05-29,expense,1.5,groceries,groceries
+2026-05-29,expense,0.4,groceries,groceries
+2026-05-29,expense,1.79,groceries,groceries
+2026-05-29,expense,2.95,groceries,groceries
+2026-05-29,expense,1.99,groceries,groceries
+2026-05-29,expense,1.59,groceries,groceries
+2026-05-29,expense,1.35,groceries,groceries
+2026-05-29,expense,2.49,other,gift
+2026-05-29,expense,1.5,groceries,groceries
+2026-05-30,expense,1.49,other,gift
+2026-06-01,income,1000.0,salary,monthly income
+2026-06-01,expense,18.65,other,clothing
+2026-06-01,expense,14.15,other,clothing
+2026-06-01,expense,14.15,other,clothing
+2026-06-01,expense,12.65,other,clothing
+2026-06-01,expense,8.65,other,clothing
+2026-06-01,expense,78.9,other,clothing
+2026-06-01,expense,14.85,other,clothing
+2026-06-01,expense,14.9,other,clothing
+2026-06-01,expense,39.75,other,clothing
+2026-06-02,expense,129.0,insurance,health insurance
+2026-06-02,expense,420.0,rent,monthly rent
+2026-06-03,expense,1.69,groceries,groceries
+2026-06-03,expense,2.29,groceries,groceries
+2026-06-03,expense,0.61,groceries,groceries
+2026-06-03,expense,0.65,groceries,groceries
+2026-06-03,expense,0.85,groceries,groceries
+2026-06-03,expense,1.99,groceries,groceries
+2026-06-03,expense,1.89,groceries,groceries
+2026-06-03,expense,1.49,groceries,groceries
+2026-06-03,expense,2.39,groceries,groceries
+2026-06-03,expense,0.75,other,household items
+2026-06-03,expense,2.0,other,household items
+2026-06-03,expense,5.0,other,clothing
+2026-06-03,expense,3.0,other,clothing
+2026-06-03,expense,5.0,other,clothing
+2026-06-03,expense,5.0,other,clothing
+2026-06-03,expense,5.0,other,clothing
+2026-06-03,expense,7.0,other,clothing
+2026-06-03,expense,1.5,other,household items
+2026-06-03,expense,0.4,other,household items
+2026-06-06,expense,3.45,health,personal care
+2026-06-06,expense,1.45,groceries,groceries
+2026-06-06,expense,27.99,other,clothing
+2026-06-06,expense,14.97,other,clothing
+2026-06-06,expense,11.98,other,clothing
+2026-06-08,expense,1.0,groceries,groceries
+2026-06-08,expense,0.89,groceries,groceries
+2026-06-08,expense,1.99,groceries,groceries
+2026-06-08,expense,2.79,groceries,groceries
+2026-06-08,expense,0.02,groceries,groceries
+2026-06-08,expense,1.79,groceries,groceries
+2026-06-08,expense,0.79,groceries,groceries
+2026-06-08,expense,2.49,groceries,groceries
+2026-06-08,expense,0.89,groceries,groceries
+2026-06-08,expense,1.65,groceries,groceries
+2026-06-08,expense,0.65,groceries,groceries
+2026-06-08,expense,1.25,groceries,groceries
+2026-06-08,expense,1.79,groceries,groceries
+2026-06-08,expense,0.88,groceries,groceries
+2026-06-08,expense,0.94,groceries,groceries
+2026-06-08,expense,1.58,groceries,groceries
+2026-06-08,expense,1.59,groceries,groceries
+2026-06-08,expense,0.79,groceries,groceries
+2026-06-08,expense,1.69,groceries,groceries
+2026-06-10,expense,0.59,groceries,groceries
+2026-06-10,expense,1.18,groceries,groceries
+2026-06-10,expense,0.85,groceries,groceries
+2026-06-10,expense,0.99,groceries,groceries
+2026-06-13,expense,1.69,groceries,groceries
+2026-06-13,expense,1.99,groceries,groceries
+2026-06-13,expense,1.49,groceries,groceries
+2026-06-13,expense,0.74,groceries,groceries
+2026-06-13,expense,1.79,health,personal care
+2026-06-13,expense,7.99,other,bank card
+2026-06-15,expense,1.29,groceries,groceries
+2026-06-15,expense,0.69,groceries,groceries
+2026-06-15,expense,0.99,groceries,groceries
+2026-06-15,expense,0.85,groceries,groceries
+2026-06-15,expense,0.85,groceries,groceries
+2026-06-15,expense,1.79,groceries,groceries
+2026-06-16,expense,5.4,groceries,groceries
+2026-06-18,expense,0.85,groceries,groceries
+2026-06-18,expense,1.69,groceries,groceries
+2026-06-18,expense,2.39,groceries,groceries
+2026-06-18,expense,1.29,groceries,groceries
+2026-06-18,expense,23.0,subscriptions,online service
+2026-06-18,expense,3.75,health,personal care
+2026-06-20,expense,3.99,groceries,groceries
+2026-06-20,expense,2.79,groceries,groceries
+2026-06-20,expense,5.85,groceries,groceries
+2026-06-20,expense,10.06,groceries,groceries
+2026-06-20,expense,8.09,groceries,groceries
+2026-06-20,expense,4.98,groceries,groceries
+2026-06-20,expense,2.79,groceries,groceries
+2026-06-20,expense,0.79,groceries,groceries
+2026-06-20,expense,0.25,groceries,groceries
+2026-06-20,expense,1.09,groceries,groceries
+2026-06-20,expense,0.25,groceries,groceries
+2026-06-20,expense,1.29,groceries,groceries
+2026-06-20,expense,3.79,groceries,groceries
+2026-06-20,expense,0.79,groceries,groceries
+2026-06-20,expense,1.99,groceries,groceries
+2026-06-20,expense,0.79,groceries,groceries
+2026-06-20,expense,0.99,groceries,groceries
+2026-06-20,expense,1.5,groceries,groceries
+2026-06-20,expense,0.79,groceries,groceries
+2026-06-20,expense,0.79,groceries,groceries
+2026-06-20,expense,0.42,groceries,groceries
+2026-06-20,expense,1.08,groceries,groceries
+2026-06-20,expense,0.56,groceries,groceries
+2026-06-20,expense,0.53,groceries,groceries
+2026-06-20,expense,0.85,groceries,groceries
+2026-06-20,expense,0.79,groceries,groceries
+2026-06-20,expense,0.85,groceries,groceries
+2026-06-20,expense,10.0,subscriptions,phone and internet
+2026-06-20,expense,19.99,health,personal care
+2026-06-23,expense,7.28,groceries,groceries
+2026-06-23,expense,2.99,leisure,leisure
+2026-06-25,expense,0.85,groceries,groceries
+2026-06-25,expense,1.99,groceries,groceries
+2026-06-25,expense,1.59,groceries,groceries
+2026-06-25,expense,2.99,groceries,groceries
+2026-06-25,expense,5.0,leisure,leisure
+2026-06-25,expense,3.5,leisure,leisure
+2026-06-25,expense,1.5,other,household items
+2026-06-25,expense,1.0,other,household items
+2026-06-25,expense,2.0,other,household items
+2026-06-25,expense,1.0,leisure,leisure
+2026-06-25,expense,0.55,other,household items
+2026-06-25,expense,3.75,health,personal care
+2026-06-25,expense,1.45,health,personal care
+2026-06-25,expense,0.95,health,personal care
+2026-06-25,expense,4.45,health,personal care
+2026-06-26,expense,6.79,other,household items
+2026-06-26,expense,21.45,other,gift
+2026-06-26,expense,17.96,other,gift
+2026-06-26,expense,18.94,other,gift
+2026-06-26,expense,27.46,other,gift
+2026-06-26,expense,16.6,other,gift
+2026-06-26,expense,11.89,other,household items
+2026-06-26,expense,6.63,other,household items
+2026-06-27,expense,3.75,health,personal care
+2026-06-28,expense,1.0,groceries,groceries
+2026-06-28,expense,0.25,groceries,groceries
+2026-06-28,expense,2.49,groceries,groceries
+2026-06-28,expense,1.79,groceries,groceries
+2026-06-28,expense,0.89,groceries,groceries
+2026-06-28,expense,0.99,groceries,groceries
+2026-06-28,expense,0.69,groceries,groceries
+2026-06-28,expense,1.99,groceries,groceries
+2026-06-28,expense,1.49,groceries,groceries
+2026-06-28,expense,0.02,groceries,groceries
+2026-06-28,expense,0.79,groceries,groceries
+2026-06-28,expense,0.49,groceries,groceries
+2026-06-28,expense,0.46,groceries,groceries
+2026-06-28,expense,1.99,groceries,groceries
+2026-06-28,expense,0.65,groceries,groceries
+2026-06-28,expense,1.59,groceries,groceries
+2026-06-28,expense,0.78,groceries,groceries
+2026-06-28,expense,0.69,groceries,groceries
+2026-06-30,expense,0.39,groceries,groceries
+2026-06-30,expense,0.54,groceries,groceries
+2026-06-30,expense,0.85,groceries,groceries
+2026-06-30,expense,6.99,groceries,groceries
+2026-07-01,income,1000.0,salary,monthly income
+2026-07-01,expense,8.9,subscriptions,bank fee
+2026-07-02,expense,129.0,insurance,health insurance
+2026-07-03,expense,420.0,rent,monthly rent
+2026-07-06,expense,5.43,groceries,groceries
+2026-07-06,expense,2.23,groceries,groceries
+2026-07-06,expense,0.76,groceries,groceries
+2026-07-06,expense,1.79,groceries,groceries
+2026-07-06,expense,1.99,groceries,groceries
+2026-07-06,expense,3.49,groceries,groceries
+2026-07-06,expense,1.5,groceries,groceries
+2026-07-06,expense,2.19,groceries,groceries
+2026-07-06,expense,1.19,groceries,groceries
+2026-07-06,expense,0.99,groceries,groceries
+2026-07-06,expense,1.04,groceries,groceries
+2026-07-06,expense,0.83,groceries,groceries
+2026-07-06,expense,1.19,groceries,groceries
+2026-07-06,expense,0.79,groceries,groceries
+2026-07-06,expense,1.49,groceries,groceries
+2026-07-06,expense,1.0,groceries,groceries
+2026-07-06,expense,0.95,groceries,groceries
+2026-07-06,expense,0.32,groceries,groceries
+2026-07-06,expense,0.32,groceries,groceries
+2026-07-06,expense,0.38,groceries,groceries
+2026-07-06,expense,0.41,groceries,groceries
+2026-07-06,expense,0.79,groceries,groceries
+2026-07-06,expense,0.16,groceries,groceries
+2026-07-06,expense,7.27,groceries,groceries
+2026-07-06,expense,1.69,groceries,groceries
+2026-07-06,expense,2.49,groceries,groceries
+2026-07-06,expense,0.85,groceries,groceries
+2026-07-06,expense,1.79,groceries,groceries
+2026-07-07,expense,3.65,subscriptions,online service
+2026-07-07,expense,3.65,other,household items
+2026-07-09,expense,2.7,groceries,groceries
+2026-07-09,expense,3.5,groceries,groceries
+2026-07-11,expense,0.77,groceries,groceries
+2026-07-11,expense,0.38,groceries,groceries
+2026-07-11,expense,1.69,groceries,groceries
+2026-07-11,expense,1.17,groceries,groceries
+2026-07-11,expense,0.47,groceries,groceries
+2026-07-11,expense,0.36,groceries,groceries
+2026-07-11,expense,1.0,groceries,groceries
+2026-07-11,expense,1.79,groceries,groceries
+2026-07-11,expense,0.85,groceries,groceries
+2026-07-11,expense,1.19,groceries,groceries
+2026-07-11,expense,3.69,groceries,groceries
+2026-07-11,expense,1.99,groceries,groceries
+2026-07-11,expense,1.79,groceries,groceries
+2026-07-11,expense,1.79,groceries,groceries
+2026-07-11,expense,1.35,groceries,groceries
+2026-07-15,expense,55.08,subscriptions,broadcasting fee
+2026-07-15,expense,1.69,groceries,groceries
+2026-07-15,expense,1.49,groceries,groceries
+2026-07-16,expense,6.76,groceries,groceries
+2026-07-16,expense,0.85,groceries,groceries
+2026-07-16,expense,1.99,groceries,groceries
+2026-07-16,expense,2.22,groceries,groceries
+2026-07-18,expense,2.19,groceries,groceries
+2026-07-18,expense,0.99,groceries,groceries
+2026-07-18,expense,0.99,groceries,groceries
+2026-07-18,expense,7.99,groceries,groceries
+2026-07-18,expense,2.99,groceries,groceries
+2026-07-18,expense,1.79,groceries,groceries
+2026-07-18,expense,1.39,groceries,groceries
+2026-07-18,expense,5.96,groceries,groceries
+2026-07-18,expense,0.82,groceries,groceries
+2026-07-18,expense,0.79,groceries,groceries
+2026-07-18,expense,1.0,groceries,groceries
+2026-07-18,expense,0.44,groceries,groceries
+2026-07-18,expense,0.9,groceries,groceries
+2026-07-18,expense,0.82,groceries,groceries
+2026-07-18,expense,1.0,groceries,groceries
+2026-07-18,expense,0.96,groceries,groceries
+2026-07-18,expense,10.0,subscriptions,phone and internet
+2026-07-19,expense,3.75,health,personal care
+2026-07-20,expense,3.8,groceries,groceries
+2026-07-21,expense,23.0,subscriptions,online service
+2026-07-22,expense,0.95,groceries,groceries
+2026-07-22,expense,1.69,groceries,groceries
+2026-07-22,expense,2.19,groceries,groceries
+2026-07-22,expense,1.06,groceries,groceries
+2026-07-22,expense,1.69,groceries,groceries
+2026-07-22,expense,0.57,groceries,groceries
+2026-07-22,expense,0.59,groceries,groceries
+2026-07-22,expense,1.59,groceries,groceries
+2026-07-22,expense,0.85,groceries,groceries
+2026-07-22,expense,0.89,groceries,groceries
+2026-07-22,expense,3.79,groceries,groceries
+2026-07-23,expense,9.99,health,personal care
+2026-07-23,expense,9.95,health,personal care
+2026-07-23,expense,6.99,other,household items
+2026-07-23,expense,6.99,other,household items
+2026-07-23,expense,10.99,other,household items
+2026-07-24,expense,0.95,health,personal care
+2026-07-24,expense,0.85,health,personal care
+2026-07-24,expense,2.9,health,personal care
+2026-07-24,expense,1.29,groceries,groceries
+2026-07-24,expense,3.29,groceries,groceries
+2026-07-24,expense,1.05,groceries,groceries
+2026-07-24,expense,1.19,groceries,groceries
+2026-07-24,expense,1.79,groceries,groceries
+2026-07-24,expense,1.49,groceries,groceries
+2026-07-24,expense,1.29,groceries,groceries
+2026-07-27,expense,1.2,groceries,groceries
+2026-07-27,expense,0.99,groceries,groceries
+2026-07-27,expense,0.72,groceries,groceries
+2026-07-27,expense,0.99,groceries,groceries
+2026-07-27,expense,1.06,groceries,groceries
+2026-07-27,expense,0.45,groceries,groceries
+2026-07-27,expense,2.79,groceries,groceries
+2026-07-27,expense,1.52,groceries,groceries
+2026-07-27,expense,3.63,groceries,groceries
+2026-07-27,expense,2.79,groceries,groceries
+2026-07-27,expense,3.99,groceries,groceries
+2026-07-27,expense,1.98,groceries,groceries
+2026-07-27,expense,0.58,groceries,groceries
+2026-07-27,expense,0.9,groceries,groceries
+2026-07-27,expense,0.88,groceries,groceries
+2026-07-27,expense,0.66,groceries,groceries
+2026-07-27,expense,1.03,groceries,groceries
+2026-07-27,expense,0.46,groceries,groceries
+2026-07-28,expense,0.85,groceries,groceries
+2026-07-30,expense,12.99,other,clothing
+2026-07-30,expense,16.0,other,clothing
+2026-07-30,expense,2.99,other,household items
+2026-07-30,expense,1.99,other,household items
+2026-07-30,expense,1.99,other,household items
+2026-07-30,expense,3.99,other,household items
+2026-07-30,expense,3.99,other,household items
+2026-07-30,expense,2.69,other,household items
+2026-07-30,expense,0.69,other,household items
+2026-07-30,expense,1.79,groceries,groceries
+2026-07-30,expense,1.69,groceries,groceries
+2026-07-30,expense,2.99,groceries,groceries
+2026-07-31,expense,4.49,leisure,leisure
+2026-08-01,income,1000.0,salary,monthly income
+2026-08-01,expense,2.22,groceries,groceries
+2026-08-01,expense,1.59,groceries,groceries
+2026-08-01,expense,0.85,groceries,groceries
+2026-08-01,expense,1.49,groceries,groceries
+2026-08-01,expense,0.65,groceries,groceries
+2026-08-01,expense,8.9,subscriptions,bank fee
+2026-08-01,expense,129.0,insurance,health insurance
+2026-08-03,expense,1.19,groceries,groceries
+2026-08-03,expense,0.87,groceries,groceries
+2026-08-03,expense,0.45,leisure,leisure
+2026-08-03,expense,1.79,groceries,groceries
+2026-08-03,expense,1.99,groceries,groceries
+2026-08-03,expense,1.19,groceries,groceries
+2026-08-03,expense,1.79,groceries,groceries
+2026-08-03,expense,1.06,groceries,groceries
+2026-08-03,expense,1.99,groceries,groceries
+2026-08-03,expense,0.99,groceries,groceries
+2026-08-03,expense,0.44,groceries,groceries
+2026-08-03,expense,0.44,groceries,groceries
+2026-08-03,expense,1.49,groceries,groceries
+2026-08-03,expense,0.36,groceries,groceries
+2026-08-03,expense,0.56,groceries,groceries
+2026-08-03,expense,0.34,groceries,groceries
+2026-08-03,expense,0.99,groceries,groceries
+2026-08-03,expense,0.26,groceries,groceries
+2026-08-03,expense,0.41,groceries,groceries
+2026-08-03,expense,1.29,groceries,groceries
+2026-08-03,expense,0.79,groceries,groceries
+2026-08-04,expense,1.99,groceries,groceries
+2026-08-04,expense,0.65,health,personal care
+2026-08-04,expense,1.25,health,personal care
+2026-08-04,expense,0.85,health,personal care
+2026-08-04,expense,3.75,health,personal care
+2026-08-04,expense,1.95,health,personal care
+2026-08-04,expense,420.0,rent,monthly rent
+2026-08-05,expense,0.5,other,household items
+2026-08-05,expense,0.85,groceries,groceries
+2026-08-05,expense,0.89,groceries,groceries
+2026-08-05,expense,0.25,other,household items
+2026-08-05,expense,1.69,groceries,groceries
+2026-08-05,expense,3.75,health,personal care
+2026-08-07,expense,14.99,other,clothing
+2026-08-07,expense,7.99,other,clothing
+2026-08-07,expense,12.99,other,clothing
+2026-08-07,expense,0.99,groceries,groceries
+2026-08-07,expense,2.99,leisure,leisure
+2026-08-08,expense,9.41,groceries,groceries
+2026-08-08,expense,0.34,groceries,groceries
+2026-08-08,expense,1.29,groceries,groceries
+2026-08-08,expense,0.66,groceries,groceries
+2026-08-08,expense,5.47,groceries,groceries
+2026-08-08,expense,0.49,groceries,groceries
+2026-08-08,expense,0.99,groceries,groceries
+2026-08-08,expense,1.49,groceries,groceries
+2026-08-08,expense,0.79,groceries,groceries
+2026-08-08,expense,0.85,groceries,groceries
+2026-08-08,expense,2.49,leisure,leisure
+2026-08-08,expense,1.79,groceries,groceries
+2026-08-08,expense,0.98,groceries,groceries
+2026-08-08,expense,1.29,groceries,groceries
+2026-08-08,expense,1.39,groceries,groceries
+2026-08-08,expense,1.19,groceries,groceries
+2026-08-08,expense,1.29,groceries,groceries
+2026-08-08,expense,0.79,groceries,groceries
+2026-08-08,expense,2.59,groceries,groceries
+2026-08-10,expense,339.7,education,tuition fee
+2026-08-10,expense,3.62,other,other
+2026-08-10,expense,0.95,health,personal care
+2026-08-10,expense,3.99,other,household items
+2026-08-10,expense,0.69,other,household items
+2026-08-10,expense,0.89,groceries,groceries
+2026-08-10,expense,1.19,groceries,groceries
+2026-08-10,expense,4.99,other,household items
+2026-08-10,expense,1.59,groceries,groceries
+2026-08-12,expense,0.69,groceries,groceries
+2026-08-12,expense,1.99,other,household items
+2026-08-12,expense,1.29,groceries,groceries
+2026-08-12,expense,3.29,groceries,groceries
+2026-08-12,expense,1.16,groceries,groceries
+2026-08-12,expense,0.49,groceries,groceries
+2026-08-12,expense,0.67,groceries,groceries
+2026-08-12,expense,0.59,groceries,groceries
+2026-08-12,expense,1.75,groceries,groceries
+2026-08-12,expense,1.0,other,household items
+2026-08-13,expense,28.4,leisure,leisure
+2026-08-13,expense,0.96,leisure,leisure
+2026-08-13,expense,3.0,leisure,leisure
+2026-08-13,expense,6.95,leisure,leisure
+2026-08-14,expense,1.0,leisure,leisure
+2026-08-14,expense,2.0,leisure,leisure
+2026-08-14,expense,9.9,other,gift
+2026-08-14,expense,1.2,leisure,leisure
+2026-08-14,expense,6.75,leisure,leisure
+2026-08-15,expense,1.69,groceries,groceries
+2026-08-15,expense,0.85,groceries,groceries
+2026-08-15,expense,0.89,groceries,groceries
+2026-08-15,expense,1.19,groceries,groceries
+2026-08-15,expense,10.0,subscriptions,phone and internet
+2026-08-16,expense,4.0,health,personal care
+2026-08-17,expense,2.49,groceries,groceries
+2026-08-17,expense,2.79,groceries,groceries
+2026-08-17,expense,4.54,groceries,groceries
+2026-08-17,expense,1.59,groceries,groceries
+2026-08-17,expense,0.23,groceries,groceries
+2026-08-17,expense,1.19,groceries,groceries
+2026-08-17,expense,0.4,groceries,groceries
+2026-08-17,expense,0.46,groceries,groceries
+2026-08-17,expense,1.12,groceries,groceries
+2026-08-17,expense,0.89,groceries,groceries
+2026-08-17,expense,1.99,groceries,groceries
+2026-08-17,expense,0.21,groceries,groceries
+2026-08-17,expense,1.21,groceries,groceries
+2026-08-17,expense,0.99,groceries,groceries
+2026-08-17,expense,0.99,groceries,groceries
+2026-08-17,expense,1.49,groceries,groceries
+2026-08-17,expense,0.37,groceries,groceries
+2026-08-17,expense,0.99,groceries,groceries
+2026-08-18,expense,23.0,subscriptions,online service
+2026-08-18,expense,17.39,other,clothing
+2026-08-18,expense,15.67,other,gift
+2026-08-18,expense,6.98,other,household items
+2026-08-20,expense,1.19,groceries,groceries
+2026-08-20,expense,1.99,groceries,groceries
+2026-08-20,expense,1.11,groceries,groceries
+2026-08-20,expense,1.99,groceries,groceries
+2026-08-20,expense,1.49,groceries,groceries
+2026-08-20,expense,0.85,groceries,groceries
+2026-08-20,expense,0.75,groceries,groceries
+2026-08-20,expense,1.99,groceries,groceries
+2026-08-20,expense,1.09,groceries,groceries
+2026-08-22,expense,6.45,other,gift
+2026-08-22,expense,1.0,other,household items
+2026-08-22,expense,2.45,health,personal care
+2026-08-22,expense,3.75,health,personal care
+2026-08-22,expense,1.99,groceries,groceries
+2026-08-22,expense,0.85,groceries,groceries
+2026-08-22,expense,0.85,groceries,groceries
+2026-08-22,expense,4.45,health,personal care
+2026-08-22,expense,2.49,groceries,groceries
+2026-08-22,expense,0.89,groceries,groceries
+2026-08-22,expense,3.49,groceries,groceries
+2026-08-22,expense,2.95,other,gift
+2026-08-22,expense,1.69,groceries,groceries
+2026-08-22,expense,0.79,groceries,groceries
+2026-08-22,expense,0.95,groceries,groceries
+2026-08-22,expense,1.79,groceries,groceries
+2026-08-22,expense,1.59,groceries,groceries
+2026-08-22,expense,1.29,groceries,groceries
+2026-08-22,expense,1.49,groceries,groceries
+2026-08-22,expense,0.99,groceries,groceries
+2026-08-22,expense,1.69,groceries,groceries
+2026-08-22,expense,0.79,groceries,groceries
+2026-08-22,expense,1.99,groceries,groceries
+2026-08-22,expense,5.28,other,gift
+2026-08-23,expense,10.93,other,household items
+2026-08-28,expense,4.25,health,personal care
+2026-08-28,expense,4.0,health,personal care
+2026-08-29,expense,2.49,other,gift
+2026-08-29,expense,3.79,groceries,groceries
+2026-08-29,expense,1.89,health,personal care
+2026-08-29,expense,3.69,health,personal care
+2026-08-29,expense,0.65,health,personal care
+2026-08-29,expense,1.0,other,household items
+2026-08-29,expense,6.0,groceries,groceries
+2026-08-29,expense,3.75,health,personal care
+2026-08-29,expense,2.23,groceries,groceries
+2026-08-31,expense,15.76,health,health
+2026-08-31,expense,1.19,groceries,groceries
+2026-08-31,expense,0.93,groceries,groceries
+2026-08-31,expense,0.5,groceries,groceries
+2026-08-31,expense,0.89,groceries,groceries
+2026-08-31,expense,1.89,groceries,groceries
+2026-08-31,expense,1.89,groceries,groceries
+2026-09-01,income,1000.0,salary,monthly income
+2026-09-01,expense,1.49,groceries,groceries
+2026-09-01,expense,0.79,groceries,groceries
+2026-09-01,expense,3.79,groceries,groceries
+2026-09-01,expense,1.99,groceries,groceries
+2026-09-01,expense,1.01,groceries,groceries
+2026-09-01,expense,0.69,groceries,groceries
+2026-09-01,expense,0.83,groceries,groceries
+2026-09-01,expense,7.2,groceries,groceries
+2026-09-01,expense,3.4,groceries,groceries
+2026-09-01,expense,0.43,groceries,groceries
+2026-09-01,expense,4.99,groceries,groceries
+2026-09-01,expense,4.49,groceries,groceries
+2026-09-01,expense,8.9,subscriptions,bank fee
+2026-09-01,expense,129.0,insurance,health insurance
+2026-09-01,expense,420.0,rent,monthly rent
+2026-09-02,expense,0.99,groceries,groceries
+2026-09-02,expense,0.99,groceries,groceries
+2026-09-02,expense,1.89,groceries,groceries
+2026-09-02,expense,1.27,groceries,groceries
+2026-09-02,expense,0.85,groceries,groceries
+2026-09-02,expense,54.94,other,household items
+2026-09-03,expense,4.6,groceries,groceries
+2026-09-05,expense,18.0,other,household items
+2026-09-05,expense,3.0,other,gift
+2026-09-05,expense,1.0,other,gift
+2026-09-05,expense,3.5,groceries,groceries
+2026-09-05,expense,6.5,groceries,groceries
+2026-09-05,expense,1.69,groceries,groceries
+2026-09-05,expense,1.19,groceries,groceries
+2026-09-05,expense,1.59,groceries,groceries
+2026-09-05,expense,3.69,groceries,groceries
+2026-09-05,expense,1.98,groceries,groceries
+2026-09-09,expense,1.32,groceries,groceries
+2026-09-09,expense,0.89,groceries,groceries
+2026-09-09,expense,1.39,groceries,groceries
+2026-09-09,expense,1.19,groceries,groceries
+2026-09-09,expense,2.2,groceries,groceries
+2026-09-09,expense,3.49,groceries,groceries
+2026-09-09,expense,4.49,groceries,groceries
+2026-09-09,expense,1.99,groceries,groceries
+2026-09-09,expense,4.04,groceries,groceries
+2026-09-09,expense,1.41,groceries,groceries
+2026-09-09,expense,0.75,groceries,groceries
+2026-09-09,expense,0.67,groceries,groceries
+2026-09-09,expense,0.74,groceries,groceries
+2026-09-09,expense,0.64,groceries,groceries
+2026-09-09,expense,1.49,groceries,groceries
+2026-09-09,expense,0.79,groceries,groceries
+2026-09-09,expense,0.54,groceries,groceries
+2026-09-09,expense,0.51,groceries,groceries
+2026-09-09,expense,0.79,groceries,groceries
+2026-09-09,expense,0.45,groceries,groceries
+2026-09-09,expense,0.51,groceries,groceries
+2026-09-09,expense,1.67,groceries,groceries
+2026-09-10,expense,21.42,subscriptions,online service
+2026-09-10,expense,5.66,groceries,groceries
+2026-09-10,expense,1.0,other,household items
+2026-09-10,expense,2.0,other,household items
+2026-09-10,expense,1.4,other,household items
+2026-09-10,expense,9.11,groceries,groceries
+2026-09-10,expense,0.99,groceries,groceries
+2026-09-10,expense,0.99,groceries,groceries
+2026-09-10,expense,0.89,groceries,groceries
+2026-09-10,expense,0.79,groceries,groceries
+2026-09-10,expense,4.49,groceries,groceries
+2026-09-10,expense,2.79,groceries,groceries
+2026-09-10,expense,1.59,groceries,groceries
+2026-09-10,expense,0.85,groceries,groceries
+2026-09-10,expense,0.85,groceries,groceries
+2026-09-10,expense,0.99,groceries,groceries
+2026-09-10,expense,1.19,groceries,groceries
+2026-09-10,expense,0.85,groceries,groceries
+2026-09-10,expense,0.89,groceries,groceries
+2026-09-10,expense,0.49,groceries,groceries
+2026-09-10,expense,1.29,groceries,groceries
+2026-09-12,expense,3.75,health,personal care
+2026-09-13,expense,10.0,subscriptions,phone and internet
+2026-09-17,expense,5.0,groceries,groceries
+2026-09-17,expense,1.99,groceries,groceries
+2026-09-17,expense,0.85,groceries,groceries
+2026-09-17,expense,0.99,groceries,groceries
+2026-09-17,expense,1.39,groceries,groceries
+2026-09-17,expense,1.69,groceries,groceries
+2026-09-17,expense,2.19,groceries,groceries
+2026-09-17,expense,1.49,groceries,groceries
+2026-09-17,expense,1.99,groceries,groceries
+2026-09-17,expense,0.99,groceries,groceries
+2026-09-17,expense,1.49,groceries,groceries
+2026-09-17,expense,0.99,groceries,groceries
+2026-09-17,expense,1.19,groceries,groceries
+2026-09-17,expense,0.99,groceries,groceries
+2026-09-17,expense,0.99,groceries,groceries
+2026-09-17,expense,0.86,groceries,groceries
+2026-09-17,expense,0.98,groceries,groceries
+2026-09-17,expense,0.89,groceries,groceries
+2026-09-17,expense,1.17,groceries,groceries
+2026-09-17,expense,1.79,groceries,groceries
+2026-09-17,expense,1.79,groceries,groceries
+2026-09-17,expense,4.45,health,personal care
+2026-09-17,expense,4.95,health,personal care
+2026-09-17,expense,1.75,health,personal care
+2026-09-17,expense,1.85,health,personal care
+2026-09-17,expense,1.45,health,personal care
+2026-09-17,expense,2.45,health,personal care
+2026-09-17,expense,3.95,health,personal care
+2026-09-17,expense,4.45,health,personal care
+2026-09-17,expense,7.95,health,personal care
+2026-09-17,expense,9.95,other,household items
+2026-09-19,expense,21.42,subscriptions,online service
+2026-09-19,expense,1.29,groceries,groceries
+2026-09-19,expense,1.99,groceries,groceries
+2026-09-19,expense,1.99,groceries,groceries
+2026-09-22,expense,5.86,groceries,groceries
+2026-09-22,expense,1.29,groceries,groceries
+2026-09-22,expense,2.59,groceries,groceries
+2026-09-22,expense,0.75,health,personal care
+2026-09-23,expense,1.19,groceries,groceries
+2026-09-23,expense,1.69,groceries,groceries
+2026-09-23,expense,2.99,groceries,groceries
+2026-09-23,expense,0.99,groceries,groceries
+2026-09-23,expense,1.19,groceries,groceries
+2026-09-23,expense,1.49,groceries,groceries
+2026-09-23,expense,0.88,groceries,groceries
+2026-09-23,expense,1.69,groceries,groceries
+2026-09-23,expense,0.65,groceries,groceries
+2026-09-23,expense,5.79,groceries,groceries
+2026-09-23,expense,0.39,groceries,groceries
+2026-09-23,expense,1.99,groceries,groceries
+2026-09-23,expense,0.49,groceries,groceries
+2026-09-23,expense,1.79,groceries,groceries
+2026-09-23,expense,1.99,groceries,groceries
+2026-09-23,expense,1.95,health,personal care
+2026-09-23,expense,3.55,health,personal care
+2026-09-24,expense,1.85,groceries,groceries
+2026-09-24,expense,1.19,groceries,groceries
+2026-09-24,expense,1.99,groceries,groceries
+2026-09-24,expense,2.39,groceries,groceries
+2026-09-24,expense,1.19,groceries,groceries
+2026-09-24,expense,1.36,groceries,groceries
+2026-09-24,expense,1.59,groceries,groceries
+2026-09-24,expense,0.85,groceries,groceries
+2026-09-24,expense,1.29,groceries,groceries
+2026-09-24,expense,0.78,groceries,groceries
+2026-09-25,expense,6.5,leisure,leisure
+2026-09-28,expense,5.4,other,other
+2026-09-28,expense,3.75,other,other
