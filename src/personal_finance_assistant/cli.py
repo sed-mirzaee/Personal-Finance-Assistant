@@ -1,6 +1,6 @@
 """Command-line interface."""
 
-from datetime import UTC, date, datetime
+from datetime import date, datetime
 from pathlib import Path
 
 from personal_finance_assistant.account import (
@@ -42,16 +42,19 @@ Available commands in PFA (Personal Finance Assistant):
   add        add a transaction
   delete     delete a transaction by id
   edit       edit a transaction by id
-  import     import transactions from a CSV file
+  import     import transactions from a CSV file (see examples/sample_transactions.csv)
   balance    show current balance
   list       show all transactions
   recurring  detect recurring monthly payments
   predict    predict balance N months ahead
   recommend  get savings/spending suggestions
-  chart      save a chart of your balance over time as a PNG file
+  chart      save an overview image with four charts as a PNG file
   settings   show and change categories and limits
   help       show this full list
   exit       quit the program
+
+If your account file is damaged, the program will offer to 'restore'
+the last backup or 'reset' to a new account. You don't need a command for that.
   """
 
 
@@ -83,15 +86,6 @@ def handle_damaged_account(error):
         print("Nothing was changed.")
 
 
-def cmd_get_file() -> None:
-    pass
-
-def cmd_show_summary() -> None:
-    pass
-
-def cmd_set_balance() -> None:
-    pass
-
 def cmd_show_chart():
     transactions = load_transactions_or_warn()
     if transactions is None:
@@ -111,7 +105,7 @@ def cmd_show_recurring() -> None:
     if transactions is None:
         return
 
-    recurring = find_recurring_transactions()
+    recurring = find_recurring_transactions(transactions=transactions)
     if not recurring:
         print("No recurring payments detected yet.")
         return
@@ -131,7 +125,7 @@ def cmd_predict_balance() -> None:
     except ValueError:
         print(f"Invalid number of months: '{months_text}'")
         return
-    predicted = predict_balance(months)
+    predicted = predict_balance(months, transactions=transactions)
     print(f"Predicted balance in {months} month(s): {predicted:+.2f}")
 
 
@@ -140,7 +134,7 @@ def cmd_show_recommendations() -> None:
     if transactions is None:
         return
 
-    for line in generate_recommendations():
+    for line in generate_recommendations(transactions=transactions):
         print(f"- {line}")
 
 def cmd_add_transaction() -> None:
@@ -171,7 +165,7 @@ def cmd_add_transaction() -> None:
 
     date_text = input("  date (YYYY-MM-DD, blank = today): ").strip()
     try:
-        tx_date = date.fromisoformat(date_text) if date_text else datetime.now(UTC).date()
+        tx_date = date.fromisoformat(date_text) if date_text else datetime.now().astimezone().date()
     except ValueError:
         print(f"Not added: date must be YYYY-MM-DD, got '{date_text}'")
         return

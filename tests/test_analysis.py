@@ -5,12 +5,6 @@ from datetime import date
 import pytest
 
 import personal_finance_assistant.settings as st
-
-
-@pytest.fixture(autouse=True)
-def isolate_settings_file(tmp_path, monkeypatch):
-    monkeypatch.setattr(st, "SETTINGS_FILE", tmp_path / "settings.json")
-
 from personal_finance_assistant.analysis import (
     average_monthly_expense_by_category,
     find_recurring_transactions,
@@ -18,6 +12,11 @@ from personal_finance_assistant.analysis import (
     predict_balance,
 )
 from personal_finance_assistant.data_model import Transaction
+
+
+@pytest.fixture(autouse=True)
+def isolate_settings_file(tmp_path, monkeypatch):
+    monkeypatch.setattr(st, "SETTINGS_FILE", tmp_path / "settings.json")
 
 
 def monthly(day1, day2, day3, tx_type, category, amount):
