@@ -2,34 +2,78 @@
 
 import csv
 import json
+import os
+from datetime import datetime
 from pathlib import Path
 
 from personal_finance_assistant.data_model import Transaction, validate_transaction
 
 ACCOUNT_FILE = Path.home() / ".personal_finance_assistant" / "account.json"
 
+class AccountFileError(Exception):
+    """The account file exists but cannot be read (e.g. damaged JSON)."""
 
 def load_transactions() -> list[Transaction]:
     # Read every transaction from the account file. If the file doesn't
     # exist yet, there simply are no transactions yet.
-    if not ACCOUNT_FILE.exists():
+    path = ACCOUNT_FILE
+    if not path.exists():
         return []
+    try:
+        rows = json.loads(path.read_text(encoding="utf-8"))
+        return [Transaction.from_row(row) for row in rows]
+    except (json.JSONDecodeError, KeyError, ValueError, TypeError) as error:
+        raise AccountFileError(
+            f"The account file {path} is damaged and cannot be read ({error})."
+        ) from error
 
-    with open(ACCOUNT_FILE, encoding="utf-8") as f:
-        rows = json.load(f)
 
-    transactions = []
-    for row in rows:
-        transactions.append(Transaction.from_row(row))
-    return transactions
+def backup_path():
+    # account.json -> account.json.bak, next to the account file
+    return ACCOUNT_FILE.with_name(ACCOUNT_FILE.name + ".bak")
 
 
-def save_transactions(transactions: list[Transaction]) -> None:
+def save_transactions(transactions) -> None:
     # Write the whole list back to the account file, as a JSON list of dicts.
-    ACCOUNT_FILE.parent.mkdir(parents=True, exist_ok=True)
+    path = ACCOUNT_FILE
+    path.parent.mkdir(parents=True, exist_ok=True)
+
+    # Keep the last good version before overwriting it.
+    if path.exists():
+        backup_path().write_text(path.read_text(encoding="utf-8"), encoding="utf-8")
+
+    # Write to a temporary file first, then swap it in with one step,
+    # so the account file is never left half-written.
+    temp_path = path.with_name(path.name + ".tmp")
     rows = [tx.to_row() for tx in transactions]
-    with open(ACCOUNT_FILE, "w", encoding="utf-8") as f:
-        json.dump(rows, f, indent=2)
+    temp_path.write_text(json.dumps(rows, indent=2), encoding="utf-8")
+    os.replace(temp_path, path)
+
+
+def restore_backup() -> bool:
+    # Replace the damaged account file with the backup, if the backup is readable.
+    # Returns True if it worked.
+    backup = backup_path()
+    if not backup.exists():
+        return False
+
+    try:
+        text = backup.read_text(encoding="utf-8")
+        rows = json.loads(text)
+        [Transaction.from_row(row) for row in rows]  # only to check the backup is valid
+    except (json.JSONDecodeError, KeyError, ValueError, TypeError):
+        return False
+    ACCOUNT_FILE.write_text(text, encoding="utf-8")
+    return True
+
+
+def move_damaged_file_aside():
+    # Rename the damaged file (never delete it) so a new, empty account can start.
+    # Returns the new path of the damaged file.
+    stamp = datetime.now().astimezone().strftime("%Y%m%d-%H%M%S")
+    damaged_path = ACCOUNT_FILE.with_name(f"{ACCOUNT_FILE.stem}.damaged-{stamp}.json")
+    os.replace(ACCOUNT_FILE, damaged_path)
+    return damaged_path
 
 
 def add_transaction(tx: Transaction) -> None:

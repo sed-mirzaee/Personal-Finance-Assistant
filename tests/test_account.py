@@ -1,5 +1,6 @@
 """Tests for account.py."""
 
+import json
 from datetime import date
 
 import pytest
@@ -114,3 +115,55 @@ def test_import_csv_skips_bad_rows_and_reports_them(tmp_path):
     added, errors = import_csv(source)
     assert added == 1
     assert len(errors) == 2
+
+def test_load_transactions_raises_on_damaged_file():
+    ac.ACCOUNT_FILE.write_text("[{not valid json", encoding="utf-8")
+
+    with pytest.raises(ac.AccountFileError):
+        ac.load_transactions()
+
+
+def test_damaged_file_is_not_changed():
+    damaged_text = "[{not valid json"
+    ac.ACCOUNT_FILE.write_text(damaged_text, encoding="utf-8")
+
+    with pytest.raises(ac.AccountFileError):
+        ac.load_transactions()
+
+    assert ac.ACCOUNT_FILE.read_text(encoding="utf-8") == damaged_text
+
+
+def sample_tx():
+    return Transaction(date(2026, 6, 1), 1000.0, "income", "salary")
+
+
+def test_save_creates_backup_of_previous_version():
+    ac.save_transactions([sample_tx()])
+    ac.save_transactions([sample_tx(), sample_tx()])
+
+    backup_rows = json.loads(ac.backup_path().read_text(encoding="utf-8"))
+    assert len(backup_rows) == 1  # the backup holds the version before the last save
+
+
+def test_restore_backup_after_damage():
+    ac.save_transactions([sample_tx()])
+    ac.save_transactions([sample_tx(), sample_tx()])
+    ac.ACCOUNT_FILE.write_text("[{broken", encoding="utf-8")
+
+    assert ac.restore_backup() is True
+    assert len(ac.load_transactions()) == 1
+
+
+def test_restore_backup_without_backup():
+    ac.ACCOUNT_FILE.write_text("[{broken", encoding="utf-8")
+    assert ac.restore_backup() is False
+
+
+def test_move_damaged_file_aside_keeps_the_file():
+    ac.ACCOUNT_FILE.write_text("[{broken", encoding="utf-8")
+
+    damaged_path = ac.move_damaged_file_aside()
+
+    assert not ac.ACCOUNT_FILE.exists()
+    assert damaged_path.read_text(encoding="utf-8") == "[{broken"
+    assert ac.load_transactions() == []  # a new, empty account

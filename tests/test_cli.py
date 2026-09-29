@@ -7,12 +7,16 @@ import pytest
 import personal_finance_assistant.account as ac
 import personal_finance_assistant.charts as ch
 import personal_finance_assistant.settings as st
+from personal_finance_assistant import cli
 from personal_finance_assistant.cli import (
     FULL_MENU,
     GOODBYE,
     SHORT_MENU,
     WELCOME,
+    cmd_predict_balance,
     cmd_show_chart,
+    cmd_show_recommendations,
+    cmd_show_recurring,
     run_main_menu,
 )
 from personal_finance_assistant.data_model import Transaction
@@ -38,6 +42,16 @@ def run_with_inputs(monkeypatch, capsys, inputs):
 
 # --- menu basics -----------------------------------------------------------
 
+def test_menu_can_reset_damaged_account(monkeypatch, capsys):
+    ac.ACCOUNT_FILE.write_text("[{broken", encoding="utf-8")
+    answers = iter(["balance", "reset", "exit"])
+    monkeypatch.setattr("builtins.input", lambda prompt="": next(answers))
+
+    run_main_menu()
+
+    assert "Started a new account" in capsys.readouterr().out
+    assert ac.load_transactions() == []
+    
 def test_startup_shows_welcome_and_short_menu_only(monkeypatch, capsys):
     out = run_with_inputs(monkeypatch, capsys, ["exit"])
     assert WELCOME in out
@@ -177,7 +191,20 @@ def test_import_reads_valid_csv(monkeypatch, capsys, tmp_path):
 
  #--- analysis ------------------------------------------------------------
 
+@pytest.mark.parametrize("command", [
+    cmd_show_chart, cmd_show_recurring, cmd_predict_balance, cmd_show_recommendations,
+])
+def test_data_commands_warn_when_no_transactions(command, monkeypatch, capsys):
+    monkeypatch.setattr("builtins.input", lambda prompt="": "1")  # in case the command asks something
+    command()
+    assert "No transactions yet" in capsys.readouterr().out
+
+def add_one_expense():
+    # One expense, no income: enough data for the analysis commands to run.
+    ac.save_transactions([Transaction(date(2026, 6, 1), 50.0, "expense", "groceries")])
+
 def test_recurring_shows_messge_when_none_found(monkeypatch, capsys):
+    add_one_expense()
     out = run_with_inputs(monkeypatch, capsys, ["recurring", "exit"])
     assert "No recurring payments detected yet." in out
 
@@ -190,24 +217,50 @@ def test_recurring_detects_pattern(monkeypatch, capsys):
 
 
 def test_predict_default_one_month(monkeypatch, capsys):
+    add_one_expense()
     out = run_with_inputs(monkeypatch, capsys, ["predict", "", "exit"])
     assert "Predicted balance in 1 month(s):" in out
 
 
 def test_predict_rejects_bad_number(monkeypatch, capsys):
+    add_one_expense()
     out = run_with_inputs(monkeypatch, capsys, ["predict", "abc", "exit"])
     assert "Invalid number of months" in out
 
 
 def test_recommend_no_income_message(monkeypatch, capsys):
+    add_one_expense()
     out = run_with_inputs(monkeypatch, capsys, ["recommend", "exit"])
     assert "No income recorded yet" in out
 
 
 # --- charts --------------------------------------------------------------
 
+def test_chart_command_without_transactions(tmp_path, monkeypatch, capsys):
+    monkeypatch.setattr(ch, "DEFAULT_OVERVIEW_FILE", tmp_path / "overview.png")
+
+    cmd_show_chart()
+
+    assert "No transactions yet" in capsys.readouterr().out
+    assert not (tmp_path / "overview.png").exists()
+
+
+def test_chart_command_when_file_is_locked(monkeypatch, capsys):
+    def locked_file(transactions):
+        raise PermissionError("file is in use")
+
+    monkeypatch.setattr(cli, "save_overview_chart", locked_file)
+    monkeypatch.setattr(cli, "load_transactions",
+                        lambda: [Transaction(date(2026, 6, 1), 1000.0, "income", "salary")])
+
+    cmd_show_chart()  # must not raise
+
+    assert "Could not save the chart" in capsys.readouterr().out
+
 def test_chart_command_saves_overview(tmp_path, monkeypatch, capsys):
     monkeypatch.setattr(ch, "DEFAULT_OVERVIEW_FILE", tmp_path / "overview.png")
+    monkeypatch.setattr(cli, "load_transactions",
+                        lambda: [Transaction(date(2026, 6, 1), 1000.0, "income", "salary")])
 
     cmd_show_chart()
 

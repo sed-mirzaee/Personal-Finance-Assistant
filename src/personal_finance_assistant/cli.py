@@ -4,12 +4,15 @@ from datetime import UTC, date, datetime
 from pathlib import Path
 
 from personal_finance_assistant.account import (
+    AccountFileError,
     add_transaction,
     delete_transaction,
     edit_transaction,
     get_balance,
     import_csv,
     load_transactions,
+    move_damaged_file_aside,
+    restore_backup,
 )
 from personal_finance_assistant.analysis import (
     find_recurring_transactions,
@@ -52,6 +55,34 @@ Available commands in PFA (Personal Finance Assistant):
   """
 
 
+def load_transactions_or_warn():
+    # Returns the transactions, or None (after printing a message) if there are none.
+    transactions = load_transactions()
+    if not transactions:
+        print("No transactions yet. Add or import some first, then try again.")
+        return None
+    return transactions
+
+
+def handle_damaged_account(error):
+    print(error)
+    print("  restore  go back to the last saved backup")
+    print("  reset    start a new, empty account (the damaged file is kept aside)")
+    print("  (anything else: leave it and fix the file yourself)")
+    choice = input("  what do you want to do? ").strip().lower()
+
+    if choice == "restore":
+        if restore_backup():
+            print("Backup restored. You can continue.")
+        else:
+            print("No usable backup found. Try 'reset' or fix the file yourself.")
+    elif choice == "reset":
+        damaged_path = move_damaged_file_aside()
+        print(f"Started a new account. The damaged file was saved as {damaged_path}")
+    else:
+        print("Nothing was changed.")
+
+
 def cmd_get_file() -> None:
     pass
 
@@ -61,12 +92,25 @@ def cmd_show_summary() -> None:
 def cmd_set_balance() -> None:
     pass
 
-
 def cmd_show_chart():
-    path = save_overview_chart()
+    transactions = load_transactions_or_warn()
+    if transactions is None:
+        return
+
+    try:
+        path = save_overview_chart(transactions=transactions)
+    except OSError as error:
+        print(f"Could not save the chart: {error}")
+        print("If the image is open in another program, close it and try again.")
+        return
+
     print(f"Chart saved to {path}")
 
 def cmd_show_recurring() -> None:
+    transactions = load_transactions_or_warn()
+    if transactions is None:
+        return
+
     recurring = find_recurring_transactions()
     if not recurring:
         print("No recurring payments detected yet.")
@@ -77,6 +121,10 @@ def cmd_show_recurring() -> None:
 
 
 def cmd_predict_balance() -> None:
+    transactions = load_transactions_or_warn()
+    if transactions is None:
+        return
+
     months_text = input("  months ahead (default 1): ").strip()
     try:
         months = int(months_text) if months_text else 1
@@ -88,6 +136,10 @@ def cmd_predict_balance() -> None:
 
 
 def cmd_show_recommendations() -> None:
+    transactions = load_transactions_or_warn()
+    if transactions is None:
+        return
+
     for line in generate_recommendations():
         print(f"- {line}")
 
@@ -271,48 +323,53 @@ def run_main_menu() -> None:
 
         command = command_args[0].lower()
 
-        if command == "exit":
-            print(GOODBYE)
-            break
+        try:
+            if command == "exit":
+                print(GOODBYE)
+                break
 
-        elif command == "help":
-            cmd_show_help()
+            elif command == "help":
+                cmd_show_help()
 
-        elif command == "settings":
-            cmd_settings()
+            elif command == "settings":
+                cmd_settings()
 
-        elif command == "add":
-            cmd_add_transaction()
+            elif command == "add":
+                cmd_add_transaction()
 
-        elif command == "delete":
-            cmd_delete_transaction()
+            elif command == "delete":
+                cmd_delete_transaction()
 
-        elif command == "edit":
-            cmd_edit_transaction()
+            elif command == "edit":
+                cmd_edit_transaction()
 
-        elif command == "import":
-            cmd_import()
+            elif command == "import":
+                cmd_import()
 
-        elif command == "balance":
-            cmd_get_balance()
+            elif command == "balance":
+                cmd_get_balance()
 
-        elif command == "list":
-            cmd_get_transactions()
+            elif command == "list":
+                cmd_get_transactions()
 
-        elif command == "recurring":
-            cmd_show_recurring()
+            elif command == "recurring":
+                cmd_show_recurring()
 
-        elif command == "predict":
-            cmd_predict_balance()
+            elif command == "predict":
+                cmd_predict_balance()
 
-        elif command == "recommend":
-            cmd_show_recommendations()
+            elif command == "recommend":
+                cmd_show_recommendations()
 
-        elif command == "chart":
-            cmd_show_chart()
+            elif command == "chart":
+                cmd_show_chart()
 
-        else:
-            print(f"Unknown command: '{command}'. Type 'help' to see the options.")
+            else:
+                print(f"Unknown command: '{command}'. Type 'help' to see the options.")
+
+
+        except AccountFileError as error:
+            handle_damaged_account(error)
 
 # Entry point of project.scripts
 def main() -> None:
