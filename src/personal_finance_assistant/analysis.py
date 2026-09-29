@@ -1,11 +1,13 @@
 """Analysis: detect recurring payments, predict balance, give recommendations."""
 
+import pandas as pd
+
 from personal_finance_assistant.account import load_transactions
 from personal_finance_assistant.data_model import EXPENSE, INCOME
 from personal_finance_assistant.settings import load_settings
 
 
-def group_by_type_and_category(transactions) -> None:
+def group_by_type_and_category(transactions) -> dict:
     # Returns a dict like {("expense", "rent"): [tx1, tx2, ...], ...}
     groups = {}
     for tx in transactions:
@@ -16,7 +18,7 @@ def group_by_type_and_category(transactions) -> None:
     return groups
 
 
-def find_recurring_transactions(transactions=None, settings=None) -> None:
+def find_recurring_transactions(transactions=None, settings=None) -> list:
     # Look through the transactions and find groups (same type + category)
     # that repeat roughly every month with a similar amount.
     if transactions is None:
@@ -63,7 +65,7 @@ def find_recurring_transactions(transactions=None, settings=None) -> None:
     return recurring
 
 
-def predict_balance(months_ahead=1, transactions=None, settings=None) -> None:
+def predict_balance(months_ahead=1, transactions=None, settings=None) -> float:
     # Estimate the balance N months from now, assuming recurring
     # transactions keep happening at the same amount and pace.
     if transactions is None:
@@ -84,7 +86,7 @@ def predict_balance(months_ahead=1, transactions=None, settings=None) -> None:
     return round(predicted, 2)
 
 
-def generate_recommendations(transactions=None, settings=None) -> None:
+def generate_recommendations(transactions=None, settings=None) -> list:
     # Simple rule-based suggestions about saving and spending.
     if transactions is None:
         transactions = load_transactions()
@@ -137,27 +139,53 @@ def generate_recommendations(transactions=None, settings=None) -> None:
 
     return recommendations
 
-def average_monthly_expense_by_category(transactions=None):
-    # Average monthly spending per expense category.
+
+def transactions_to_dataframe(transactions) -> pd.DataFrame:
+    # One row per transaction, used by the pandas-based analyses below.
+    return pd.DataFrame({
+        "date": pd.to_datetime([tx.date for tx in transactions]),
+        "type": [tx.type for tx in transactions],
+        "category": [tx.category for tx in transactions],
+        "amount": [tx.amount for tx in transactions],
+    })
+
+
+def average_monthly_expense_by_category(transactions=None) -> pd.Series:
+    # Average monthly spending per expense category, largest first.
     # Total per category is divided by the number of months the data covers
     # (first to last transaction month, inclusive), so a category that
     # appears only once is not treated as if it happened every month.
-    # Returns a dict like {"rent": 650.0, "groceries": 210.5, ...}
+    # Returns a Series like:  rent 650.0, groceries 210.5, ...
     if transactions is None:
         transactions = load_transactions()
     if not transactions:
-        return {}
+        return pd.Series(dtype=float)
 
-    dates = [tx.date for tx in transactions]
-    first, last = min(dates), max(dates)
-    month_count = (last.year - first.year) * 12 + (last.month - first.month) + 1
+    df = transactions_to_dataframe(transactions)
 
-    totals = {}
-    for tx in transactions:
-        if tx.type == EXPENSE:
-            totals[tx.category] = totals.get(tx.category, 0) + tx.amount
+    months = df["date"].dt.to_period("M")
+    month_count = (months.max() - months.min()).n + 1
 
-    averages = {}
-    for category, total in totals.items():
-        averages[category] = round(total / month_count, 2)
-    return averages
+    expenses = df[df["type"] == EXPENSE]
+    averages = expenses.groupby("category")["amount"].sum() / month_count
+    return averages.round(2).sort_values(ascending=False)
+
+
+def monthly_income_and_expense(transactions=None) -> pd.DataFrame:
+    # Total income and expense per month, as a table:
+    #            income  expense
+    # month
+    # 2026-06    1000.0    730.0
+    # 2026-07    1000.0      0.0
+    if transactions is None:
+        transactions = load_transactions()
+    if not transactions:
+        return pd.DataFrame(columns=[INCOME, EXPENSE])
+
+    df = transactions_to_dataframe(transactions)
+    df["month"] = df["date"].dt.strftime("%Y-%m")
+
+    table = df.groupby(["month", "type"])["amount"].sum().unstack(fill_value=0.0)
+
+    # Always have both columns in the same order, even if a month has no income.
+    return table.reindex(columns=[INCOME, EXPENSE], fill_value=0.0).round(2)

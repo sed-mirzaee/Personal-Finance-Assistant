@@ -5,14 +5,17 @@ from datetime import date
 import pytest
 
 import personal_finance_assistant.account as ac
+import personal_finance_assistant.charts as ch
 import personal_finance_assistant.settings as st
 from personal_finance_assistant.cli import (
     FULL_MENU,
     GOODBYE,
     SHORT_MENU,
     WELCOME,
+    cmd_show_chart,
     run_main_menu,
 )
+from personal_finance_assistant.data_model import Transaction
 
 
 @pytest.fixture(autouse=True)
@@ -122,7 +125,6 @@ def test_list_shows_added_transaction(monkeypatch, capsys):
 # --- delete ------------------------------------------------------------
 
 def test_delete_existing_transaction(monkeypatch, capsys):
-    from personal_finance_assistant.data_model import Transaction
     tx = Transaction(date(2026, 9, 24), 10.0, "expense", "groceries")
     ac.add_transaction(tx)
 
@@ -139,7 +141,6 @@ def test_delete_unknown_id(monkeypatch, capsys):
 # --- edit ------------------------------------------------------------
 
 def test_edit_existing_transaction(monkeypatch, capsys):
-    from personal_finance_assistant.data_model import Transaction
     tx = Transaction(date(2026, 9, 24), 10.0, "expense", "groceries")
     ac.add_transaction(tx)
 
@@ -182,7 +183,6 @@ def test_recurring_shows_messge_when_none_found(monkeypatch, capsys):
 
 
 def test_recurring_detects_pattern(monkeypatch, capsys):
-    from personal_finance_assistant.data_model import Transaction
     for d in [date(2026, 6, 1), date(2026, 7, 1), date(2026, 8, 1)]:
         ac.add_transaction(Transaction(d, 650.0, "expense", "rent"))
     out = run_with_inputs(monkeypatch, capsys, ["recurring", "exit"])
@@ -206,33 +206,10 @@ def test_recommend_no_income_message(monkeypatch, capsys):
 
 # --- charts --------------------------------------------------------------
 
-import pytest
+def test_chart_command_saves_overview(tmp_path, monkeypatch, capsys):
+    monkeypatch.setattr(ch, "DEFAULT_OVERVIEW_FILE", tmp_path / "overview.png")
 
-from personal_finance_assistant.charts import plot_balance_over_time
-from personal_finance_assistant.data_model import Transaction
+    cmd_show_chart()
 
-
-def make_tx(day, amount, type_, category="other"):
-    return Transaction(date=day, amount=amount, type=type_, category=category)
-
-
-def test_chart_file_is_created(tmp_path):
-    transactions = [
-        make_tx(date(2026, 1, 1), 1000, "income", "salary"),
-        make_tx(date(2026, 1, 5), 200, "expense", "rent"),
-    ]
-    output_path = tmp_path / "chart.png"
-
-    result = plot_balance_over_time(transactions=transactions, output_path=output_path)
-
-    assert result == output_path
-    assert output_path.exists()
-    assert output_path.stat().st_size > 0
-
-
-def test_chart_handles_no_transactions(tmp_path):
-    output_path = tmp_path / "empty_chart.png"
-
-    plot_balance_over_time(transactions=[], output_path=output_path)
-
-    assert output_path.exists()
+    assert (tmp_path / "overview.png").exists()
+    assert "Chart saved to" in capsys.readouterr().out

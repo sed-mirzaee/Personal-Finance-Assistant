@@ -138,4 +138,4 @@ def test_average_monthly_expense_by_category():
 
 
 def test_average_monthly_expense_with_no_transactions():
-    assert average_monthly_expense_by_category([]) == {}
+    assert average_monthly_expense_by_category([]).empty
