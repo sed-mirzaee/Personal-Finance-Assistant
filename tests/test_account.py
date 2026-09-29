@@ -13,6 +13,7 @@ from personal_finance_assistant.account import (
     get_balance,
     import_csv,
     load_transactions,
+    read_csv,
 )
 from personal_finance_assistant.data_model import Transaction
 
@@ -115,6 +116,39 @@ def test_import_csv_skips_bad_rows_and_reports_them(tmp_path):
     added, errors = import_csv(source)
     assert added == 1
     assert len(errors) == 2
+
+
+def test_read_csv_returns_transactions_without_saving(tmp_path):
+    source = tmp_path / "import.csv"
+    source.write_text(
+        "date,type,amount,category,note\n"
+        "2026-09-01,income,1000,salary,\n"
+        "not-a-date,expense,50,groceries,\n",
+        encoding="utf-8",
+    )
+
+    transactions, errors = read_csv(source)
+
+    assert len(transactions) == 1
+    assert transactions[0].amount == 1000
+    assert len(errors) == 1
+    assert not ac.ACCOUNT_FILE.exists()  # nothing was saved
+
+
+def test_import_csv_with_only_bad_rows_does_not_touch_account(tmp_path):
+    source = tmp_path / "import.csv"
+    source.write_text(
+        "date,type,amount,category,note\n"
+        "not-a-date,expense,50,groceries,\n",
+        encoding="utf-8",
+    )
+
+    added, errors = import_csv(source)
+
+    assert added == 0
+    assert len(errors) == 1
+    assert not ac.ACCOUNT_FILE.exists()
+
 
 def test_load_transactions_raises_on_damaged_file():
     ac.ACCOUNT_FILE.write_text("[{not valid json", encoding="utf-8")

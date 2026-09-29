@@ -1,4 +1,5 @@
 date,type,amount,category,note
+2025-12-01,income,1500.0,other,opening balance
 2025-12-01,income,1000.0,salary,monthly income
 2025-12-01,expense,129.0,insurance,health insurance
 2025-12-01,expense,0.85,groceries,groceries

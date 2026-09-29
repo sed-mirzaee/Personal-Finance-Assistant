@@ -141,12 +141,11 @@ def get_balance() -> float:
     return total
 
 
-def import_csv(path) -> tuple[int, list[str]]:
-    # Add many transactions at once from an external CSV file
-    # (same columns as the account file: id,date,type,amount,category,note).
-    # Returns (number added, list of error messages for skipped rows).
-    transactions = load_transactions()
-    added = 0
+def read_csv(path) -> tuple[list[Transaction], list[str]]:
+    # Read transactions from a CSV file WITHOUT saving them anywhere.
+    # Columns: date,type,amount,category,note (id is optional).
+    # Returns (valid transactions, list of error messages for skipped rows).
+    transactions = []
     errors = []
 
     with open(path, encoding="utf-8") as f:
@@ -155,11 +154,19 @@ def import_csv(path) -> tuple[int, list[str]]:
         for row in reader:
             row_number += 1  # row 1 is the header
             try:
-                tx = Transaction.from_row(row)
-                transactions.append(tx)
-                added += 1
+                transactions.append(Transaction.from_row(row))
             except (ValueError, KeyError) as error:
                 errors.append(f"row {row_number}: {error}")
 
-    save_transactions(transactions)
-    return added, errors
+    return transactions, errors
+
+
+def import_csv(path) -> tuple[int, list[str]]:
+    # Add many transactions at once from an external CSV file
+    # (same columns as the account file: id,date,type,amount,category,note).
+    # Returns (number added, list of error messages for skipped rows).
+    new_transactions, errors = read_csv(path)
+    if new_transactions:
+        save_transactions(load_transactions() + new_transactions)
+    return len(new_transactions), errors
+
