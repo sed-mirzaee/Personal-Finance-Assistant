@@ -47,7 +47,7 @@ Available commands in PFA (Personal Finance Assistant):
   list       show all transactions
   recurring  detect recurring monthly payments
   predict    predict balance N months ahead
-  recommend  get savings/spending suggestions
+  recommend  get saving, spending and investment suggestions
   chart      save an overview image with four charts as a PNG file
   settings   show and change categories and limits
   help       show this full list
