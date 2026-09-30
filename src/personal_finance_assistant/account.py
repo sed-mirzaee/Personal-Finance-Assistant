@@ -148,14 +148,16 @@ def read_csv(path) -> tuple[list[Transaction], list[str]]:
     transactions = []
     errors = []
 
-    with open(path, encoding="utf-8") as f:
+    # Read CSV files also saved by Excel.
+    with open(path, encoding="utf-8-sig") as f:
         reader = csv.DictReader(f)
         row_number = 1
         for row in reader:
             row_number += 1  # row 1 is the header
             try:
                 transactions.append(Transaction.from_row(row))
-            except (ValueError, KeyError) as error:
+
+            except (ValueError, KeyError, TypeError, AttributeError) as error:
                 errors.append(f"row {row_number}: {error}")
 
     return transactions, errors

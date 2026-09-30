@@ -1,5 +1,6 @@
 """Data model."""
 
+import math
 import uuid
 from dataclasses import dataclass, field
 from datetime import date
@@ -20,7 +21,7 @@ def validate_transaction(amount: float, type_: str, category: str) -> list[str]:
     errors = []
     if type_ not in TRANSACTION_TYPES:
         errors.append(f"type must be one of {TRANSACTION_TYPES}, got '{type_}'")
-    if amount <= 0:
+    if not math.isfinite(amount) or amount <= 0:
         errors.append(f"amount must be positive, got {amount}")
     if not category.strip():
         errors.append("category must not be empty")

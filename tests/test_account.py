@@ -201,3 +201,25 @@ def test_move_damaged_file_aside_keeps_the_file():
     assert not ac.ACCOUNT_FILE.exists()
     assert damaged_path.read_text(encoding="utf-8") == "[{broken"
     assert ac.load_transactions() == []  # a new, empty account
+
+
+def test_read_csv_skips_row_with_missing_columns(tmp_path):
+    source = tmp_path / "short.csv"
+    source.write_text(
+        "date,type,amount,category,note\n2026-01-01,income\n2026-01-02,income,50,gift,\n",
+        encoding="utf-8",
+    )
+    transactions, errors = read_csv(source)
+    assert len(transactions) == 1
+    assert errors[0].startswith("row 2")
+
+
+def test_read_csv_accepts_excel_bom(tmp_path):
+    source = tmp_path / "excel.csv"
+    source.write_text(
+        "date,type,amount,category,note\n2026-01-01,income,1000,salary,\n",
+        encoding="utf-8-sig",
+    )
+    transactions, errors = read_csv(source)
+    assert len(transactions) == 1
+    assert errors == []

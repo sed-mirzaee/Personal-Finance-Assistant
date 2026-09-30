@@ -225,3 +225,13 @@ def test_warns_when_expenses_are_higher_than_income():
     recommendations = generate_recommendations(transactions, settings={})
 
     assert "You spent 200.00 more than you earned" in recommendations[0]
+
+
+def test_monthly_limit_uses_average_per_month():
+    # 500 per month for ten months is below a monthly limit of 600.
+    transactions = []
+    for month in range(1, 11):
+        transactions.append(Transaction(date(2026, month, 1), 1000.0, "income", "salary"))
+        transactions.append(Transaction(date(2026, month, 2), 500.0, "expense", "rent"))
+    messages = generate_recommendations(transactions, {"monthly_expense_limit": 600})
+    assert not any("monthly limit" in m for m in messages)

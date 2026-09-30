@@ -83,3 +83,7 @@ def test_two_transactions_get_different_ids():
 def test_to_row_then_from_row_roundtrip():
     original = Transaction(DAY, 1200.0, "income", "salary")
     assert Transaction.from_row(original.to_row()) == original
+
+def test_amount_must_be_a_real_number():
+    assert validate_transaction(float("nan"), "expense", "rent")
+    assert validate_transaction(float("inf"), "expense", "rent")

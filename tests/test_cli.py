@@ -266,3 +266,21 @@ def test_chart_command_saves_overview(tmp_path, monkeypatch, capsys):
 
     assert (tmp_path / "overview.png").exists()
     assert "Chart saved to" in capsys.readouterr().out
+
+
+def test_import_with_empty_path_does_not_crash(monkeypatch, capsys):
+    out = run_with_inputs(monkeypatch, capsys, ["import", "", "exit"])
+    assert "Not imported" in out
+
+
+def test_import_with_folder_path_does_not_crash(monkeypatch, capsys, tmp_path):
+    out = run_with_inputs(monkeypatch, capsys, ["import", str(tmp_path), "exit"])
+    assert "Not imported" in out
+
+
+def test_predict_rejects_zero_months(monkeypatch, capsys):
+    out = run_with_inputs(
+        monkeypatch, capsys,
+        ["add", "income", "salary", "100", "2026-01-01", "", "predict", "0", "exit"],
+    )
+    assert "must be 1 or more" in out

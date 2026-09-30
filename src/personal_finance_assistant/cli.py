@@ -125,6 +125,11 @@ def cmd_predict_balance() -> None:
     except ValueError:
         print(f"Invalid number of months: '{months_text}'")
         return
+
+    if months < 1:
+        print("Invalid number of months: must be 1 or more")
+        return
+
     predicted = predict_balance(months, transactions=transactions)
     print(f"Predicted balance in {months} month(s): {predicted:+.2f}")
 
@@ -236,10 +241,11 @@ def cmd_edit_transaction() -> None:
 
 
 def cmd_import() -> None:
-    path = Path(input("  path to CSV file: ").strip())
+    path_text = input("  path to CSV file: ").strip()
+    path = Path(path_text)
 
-    if not path.exists():
-        print(f"Not imported: file '{path}' does not exist")
+    if not path_text or not path.is_file():
+        print(f"Not imported: no file found at '{path.resolve()}'")
         return
 
     added, errors = import_csv(path)
@@ -364,6 +370,10 @@ def run_main_menu() -> None:
 
         except AccountFileError as error:
             handle_damaged_account(error)
+            
+        except (EOFError, KeyboardInterrupt):
+            print(GOODBYE)
+            break
 
 # Entry point of project.scripts
 def main() -> None:

@@ -163,10 +163,13 @@ def generate_recommendations(transactions=None, settings=None) -> list:
             "Consider setting aside more each month."
         )
 
+    # Compare the AVERAGE monthly expense with the monthly limit.
+    monthly_expense = float(average_monthly_expense_by_category(transactions).sum())
     limit = settings.get("monthly_expense_limit", 0)
-    if limit and total_expense > limit:
+    if limit and monthly_expense > limit:
         recommendations.append(
-            f"Your total expenses ({total_expense:.2f}) exceed your monthly limit ({limit:.2f})."
+            f"Your average monthly expenses ({monthly_expense:.2f}) "
+            f"exceed your monthly limit ({limit:.2f})."
         )
 
     category_totals = {}
@@ -184,7 +187,6 @@ def generate_recommendations(transactions=None, settings=None) -> list:
     # Investment: keep an emergency fund of a few months of expenses,
     # and suggest investing whatever is above it.
     emergency_months = settings.get("emergency_fund_months", 3)
-    monthly_expense = float(average_monthly_expense_by_category(transactions).sum())
     if monthly_expense > 0:
         emergency_fund = monthly_expense * emergency_months
         balance = sum(tx.signed_amount for tx in transactions)
