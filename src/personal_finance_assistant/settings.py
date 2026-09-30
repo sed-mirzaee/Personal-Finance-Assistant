@@ -24,6 +24,11 @@ DEFAULT_SETTINGS = {
     "emergency_fund_months": 3,         # keep this many months of expenses before investing
 }
 
+# Here, there is just two text choices. Both choices belong to "forecast_method"
+TEXT_CHOICES = {
+    "forecast_method": ["trend", "recurring"],
+}
+
 REQUIRED_CATEGORY = "other"        # can never be removed
 
 
@@ -95,9 +100,17 @@ def set_value(key: str, text: str) -> None:
 
     if default is None or isinstance(default, list):
         raise ValueError(f"'{key}' is not a value setting")
-    value = type(default)(text)  # raises ValueError for e.g. "abc"
-    if value < 0:
-        raise ValueError("value must not be negative")
+
+    if isinstance(default, str):
+        # Text settings only accept a few fixed choices.
+        choices = TEXT_CHOICES.get(key, [])
+        value = text.strip().lower()
+        if value not in choices:
+            raise ValueError(f"'{key}' must be one of: {', '.join(choices)}")
+    else:
+        value = type(default)(text)  # raises ValueError for e.g. "abc"
+        if value < 0:
+            raise ValueError("value must not be negative")
 
     settings[key] = value
     save_settings(settings)

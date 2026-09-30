@@ -72,3 +72,12 @@ def test_format_settings_shows_values():
     text = format_settings()
     assert "report_months: " in text
     assert "rent" in text
+
+def test_set_text_setting():
+    set_value("forecast_method", "recurring")
+    assert load_settings()["forecast_method"] == "recurring"
+
+
+def test_set_text_setting_rejects_unknown_choice():
+    with pytest.raises(ValueError):
+        set_value("forecast_method", "abc")
