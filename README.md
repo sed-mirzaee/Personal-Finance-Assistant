@@ -42,13 +42,7 @@ uv pip install -e .
 uv run -m personal_finance_assistant
 ```
 
-or, using the installed command shortcut:
-
-```bash
-uv run pfa
-```
-
-Either way, you will see a welcome message and a short menu. Type `help`
+You will see a welcome message and a short menu. Type `help`
 at any time to see the full list of commands.
 
 ## Quick start with the example data
@@ -102,14 +96,14 @@ date,type,amount,category,note
 - `date` in the format `YYYY-MM-DD`
 - `type` is `income` or `expense`
 - `amount` is a positive number (the type decides whether it is added or subtracted)
-- `category` must be one of your categories (see `settings`)
+- `category` should be one of your categories (see `settings`); other names are imported as they are
 - `note` is optional
 
 Rows with errors are skipped and reported; all other rows are imported.
 
 ## The overview chart
 
-The `chart` command saves one image, `finance_overview.png`, with four charts:
+The `chart` command saves one image to `~/.personal_finance_assistant/finance_overview.png`, with four charts:
 
 | Top left                  | Top right                              |
 |---------------------------|----------------------------------------|
@@ -118,6 +112,9 @@ The `chart` command saves one image, `finance_overview.png`, with four charts:
 | Income and expense per month | Average monthly expense per category |
 
 The number of forecast months is set by the `forecast_months` setting.
+
+Example output with `examples/sample_transactions.csv`:
+![Finance overview](examples/finance_overview.png)
 
 ## How the forecast works
 
@@ -199,7 +196,7 @@ The tests never touch your real data files; they use temporary folders.
 Personal-Finance-Assistant/
 ├── src/
 │   └── personal_finance_assistant/
-│       ├── __init__.py      # package version
+│       ├── __init__.py      # public functions and version
 │       ├── __main__.py      # allows "python -m personal_finance_assistant"
 │       ├── cli.py           # the interactive command-line menu
 │       ├── data_model.py    # the Transaction data structure and validation
@@ -208,7 +205,10 @@ Personal-Finance-Assistant/
 │       ├── analysis.py      # recurring payments, forecast, recommendations
 │       └── charts.py        # the overview image (matplotlib)
 ├── examples/
-│   └── sample_transactions.csv   # example data for the import command
+│   ├── sample_transactions.csv   # example input data
+│   └── finance_overview.png      # chart created from the example data
+├── notebooks/
+│   └── demo.ipynb           # sample commands and outputs
 ├── tests/                   # pytest tests
 ├── pyproject.toml
 └── README.md
