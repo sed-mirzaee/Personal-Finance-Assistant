@@ -10,6 +10,8 @@ from personal_finance_assistant.analysis import (
     find_recurring_transactions,
     generate_recommendations,
     predict_balance,
+    predict_balance_recurring,
+    predict_balance_trend,
 )
 from personal_finance_assistant.data_model import Transaction
 
@@ -70,7 +72,7 @@ def test_predict_balance_adds_recurring_income_and_subtracts_expenses():
                   "expense", "rent", 650.0)
     )
     current_balance = sum(tx.signed_amount for tx in transactions)
-    predicted = predict_balance(months_ahead=1, transactions=transactions)
+    predicted = predict_balance_recurring(months_ahead=1, transactions=transactions)
     assert predicted == round(current_balance + (1200.0 - 650.0), 2)
 
 
@@ -138,3 +140,79 @@ def test_average_monthly_expense_by_category():
 
 def test_average_monthly_expense_with_no_transactions():
     assert average_monthly_expense_by_category([]).empty
+
+
+def steady_decline():
+    # 1000 income, then 100 spent every 30 days: the balance falls
+    # exactly 100 per month (1000, 900, 800, 700).
+    return [
+        Transaction(date(2026, 1, 1), 1000.0, "income", "salary"),
+        Transaction(date(2026, 1, 31), 100.0, "expense", "groceries"),
+        Transaction(date(2026, 3, 2), 100.0, "expense", "groceries"),
+        Transaction(date(2026, 4, 1), 100.0, "expense", "groceries"),
+    ]
+
+
+def test_trend_continues_a_steady_decline():
+    assert predict_balance_trend(1, transactions=steady_decline()) == pytest.approx(600.0)
+    assert predict_balance_trend(3, transactions=steady_decline()) == pytest.approx(400.0)
+
+
+def test_trend_with_one_day_returns_current_balance():
+    transactions = [Transaction(date(2026, 1, 1), 1000.0, "income", "salary")]
+    assert predict_balance_trend(3, transactions=transactions) == 1000.0
+
+
+def test_trend_with_no_transactions():
+    assert predict_balance_trend(3, transactions=[]) == 0.0
+
+
+def test_predict_balance_uses_trend_by_default():
+    result = predict_balance(1, transactions=steady_decline(), settings={})
+    assert result == predict_balance_trend(1, transactions=steady_decline())
+
+
+def test_predict_balance_can_use_recurring_method():
+    settings = {"forecast_method": "recurring"}
+    result = predict_balance(1, transactions=steady_decline(), settings=settings)
+    assert result == predict_balance_recurring(1, transactions=steady_decline(), settings=settings)
+
+
+def savings_account():
+    # 5000 income, then 300 spent in each of three months:
+    # monthly expense = 300, balance = 4100.
+    return [
+        Transaction(date(2026, 1, 1), 5000.0, "income", "salary"),
+        Transaction(date(2026, 1, 15), 300.0, "expense", "rent"),
+        Transaction(date(2026, 2, 15), 300.0, "expense", "rent"),
+        Transaction(date(2026, 3, 15), 300.0, "expense", "rent"),
+    ]
+
+
+def test_recommends_investing_above_emergency_fund():
+    recommendations = generate_recommendations(savings_account(), settings={})
+
+    # emergency fund = 3 x 300 = 900, extra = 4100 - 900 = 3200
+    assert any("Consider investing the extra 3200.00" in r for r in recommendations)
+
+
+def test_no_investment_advice_below_emergency_fund():
+    transactions = [
+        Transaction(date(2026, 1, 1), 1000.0, "income", "salary"),
+        Transaction(date(2026, 1, 15), 300.0, "expense", "rent"),
+        Transaction(date(2026, 2, 15), 300.0, "expense", "rent"),
+        Transaction(date(2026, 3, 15), 300.0, "expense", "rent"),
+    ]
+    recommendations = generate_recommendations(transactions, settings={})
+
+    # balance 100 < emergency fund 900
+    assert not any("Consider investing" in r for r in recommendations)
+
+
+def test_investment_advice_uses_emergency_fund_setting():
+    recommendations = generate_recommendations(
+        savings_account(), settings={"emergency_fund_months": 20}
+    )
+
+    # emergency fund = 20 x 300 = 6000 > balance 4100
+    assert not any("Consider investing" in r for r in recommendations)

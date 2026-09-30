@@ -24,6 +24,8 @@ from personal_finance_assistant.analysis import (
     generate_recommendations,
     monthly_income_and_expense,
     predict_balance,
+    predict_balance_recurring,
+    predict_balance_trend,
 )
 from personal_finance_assistant.charts import save_overview_chart
 from personal_finance_assistant.data_model import EXPENSE, INCOME, Transaction
@@ -50,6 +52,8 @@ __all__ = [
     "load_transactions",
     "monthly_income_and_expense",
     "predict_balance",
+    "predict_balance_recurring",
+    "predict_balance_trend",
     "read_csv",
     "save_overview_chart",
 ]

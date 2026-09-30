@@ -20,6 +20,8 @@ DEFAULT_SETTINGS = {
     "low_savings_rate": 0.10,           # below this share of income, warn to save more
     "high_spending_share": 0.30,        # above this share of income, flag the category
     "forecast_months": 3,               # months ahead shown in the forecast chart
+    "forecast_method": "trend",         # "trend" (linear regression) or "recurring"
+    "emergency_fund_months": 3,         # keep this many months of expenses before investing
 }
 
 REQUIRED_CATEGORY = "other"        # can never be removed

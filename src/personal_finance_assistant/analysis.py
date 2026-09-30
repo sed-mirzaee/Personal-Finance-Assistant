@@ -1,11 +1,13 @@
 """Analysis: detect recurring payments, predict balance, give recommendations."""
 
+import numpy as np
 import pandas as pd
 
 from personal_finance_assistant.account import load_transactions
 from personal_finance_assistant.data_model import EXPENSE, INCOME
 from personal_finance_assistant.settings import load_settings
 
+DAYS_PER_MONTH = 30  # the forecast counts one month as 30 days (same as the chart)
 
 def group_by_type_and_category(transactions) -> dict:
     # Returns a dict like {("expense", "rent"): [tx1, tx2, ...], ...}
@@ -65,9 +67,9 @@ def find_recurring_transactions(transactions=None, settings=None) -> list:
     return recurring
 
 
-def predict_balance(months_ahead=1, transactions=None, settings=None) -> float:
-    # Estimate the balance N months from now, assuming recurring
-    # transactions keep happening at the same amount and pace.
+def predict_balance_recurring(months_ahead=1, transactions=None, settings=None) -> float:
+    # Forecast method "recurring": start from the current balance and assume
+    # every recurring payment (salary, rent, ...) keeps happening every month.
     if transactions is None:
         transactions = load_transactions()
     if settings is None:
@@ -84,6 +86,45 @@ def predict_balance(months_ahead=1, transactions=None, settings=None) -> float:
 
     predicted = current_balance + monthly_net_change * months_ahead
     return round(predicted, 2)
+
+
+def daily_balance(transactions) -> pd.Series:
+    # Balance at the end of each day that has transactions, oldest first.
+    # Returns a Series with the date as index, e.g.  2026-01-01  1000.0
+    df = transactions_to_dataframe(transactions)
+    signed = df["amount"].where(df["type"] == INCOME, -df["amount"])
+    return signed.groupby(df["date"]).sum().cumsum()
+
+
+def predict_balance_trend(months_ahead=1, transactions=None) -> float:
+    # Forecast method "trend": fit a straight line (linear regression) through
+    # the daily balance and continue it from the current balance.
+    if transactions is None:
+        transactions = load_transactions()
+    if not transactions:
+        return 0.0
+
+    balance = daily_balance(transactions)
+    current = float(balance.iloc[-1])
+    if len(balance) < 2:
+        return round(current, 2)  # one day of data: no trend to measure
+
+    days = (balance.index - balance.index[0]).days
+    slope_per_day, _ = np.polyfit(days, balance.to_numpy(), 1)
+
+    predicted = current + slope_per_day * DAYS_PER_MONTH * months_ahead
+    return round(float(predicted), 2)
+
+
+def predict_balance(months_ahead=1, transactions=None, settings=None) -> float:
+    # Estimate the balance N months from now, using the forecast method
+    # chosen in the settings ("trend" by default, or "recurring").
+    if settings is None:
+        settings = load_settings()
+
+    if settings.get("forecast_method", "trend") == "recurring":
+        return predict_balance_recurring(months_ahead, transactions, settings)
+    return predict_balance_trend(months_ahead, transactions)
 
 
 def generate_recommendations(transactions=None, settings=None) -> list:
@@ -134,6 +175,20 @@ def generate_recommendations(transactions=None, settings=None) -> list:
                 f"{high_spending_share:.0%} of your income."
             )
 
+    # Investment: keep an emergency fund of a few months of expenses,
+    # and suggest investing whatever is above it.
+    emergency_months = settings.get("emergency_fund_months", 3)
+    monthly_expense = float(average_monthly_expense_by_category(transactions).sum())
+    if monthly_expense > 0:
+        emergency_fund = monthly_expense * emergency_months
+        balance = sum(tx.signed_amount for tx in transactions)
+        if balance > emergency_fund:
+            recommendations.append(
+                f"Your balance ({balance:.2f}) is more than {emergency_months} months "
+                f"of expenses ({emergency_fund:.2f}). "
+                f"Consider investing the extra {balance - emergency_fund:.2f}."
+            )
+            
     if not recommendations:
         recommendations.append("Your finances look balanced. Keep it up!")
 
