@@ -216,3 +216,12 @@ def test_investment_advice_uses_emergency_fund_setting():
 
     # emergency fund = 20 x 300 = 6000 > balance 4100
     assert not any("Consider investing" in r for r in recommendations)
+
+def test_warns_when_expenses_are_higher_than_income():
+    transactions = [
+        Transaction(date(2026, 1, 1), 1000.0, "income", "salary"),
+        Transaction(date(2026, 1, 15), 1200.0, "expense", "rent"),
+    ]
+    recommendations = generate_recommendations(transactions, settings={})
+
+    assert "You spent 200.00 more than you earned" in recommendations[0]

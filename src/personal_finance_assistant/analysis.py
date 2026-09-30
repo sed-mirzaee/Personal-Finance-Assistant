@@ -146,6 +146,12 @@ def generate_recommendations(transactions=None, settings=None) -> list:
         recommendations.append("No income recorded yet, so no savings advice can be given.")
         return recommendations
 
+    if total_expense > total_income:
+        recommendations.append(
+            f"You spent {total_expense - total_income:.2f} more than you earned. "
+            "Try to reduce your expenses."
+        )
+
     savings_amount = sum(
         tx.amount for tx in transactions
         if tx.type == EXPENSE and tx.category == "savings"
