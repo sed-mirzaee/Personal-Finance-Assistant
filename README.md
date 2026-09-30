@@ -14,7 +14,7 @@ Python" course at TU Dortmund.
 - Check your current balance
 - Detect recurring payments (e.g. monthly rent)
 - Predict your balance a few months into the future
-- Get simple, rule-based recommendations for saving and spending
+- Get simple, rule-based recommendations for saving, spending and investing
 - Save an overview image with four charts
 - Configure your own income/expense categories and thresholds
 - Automatic backup of your data, with restore if the data file gets damaged
@@ -121,29 +121,38 @@ The number of forecast months is set by the `forecast_months` setting.
 
 ## How the forecast works
 
-The forecast starts from your current balance and assumes that every
-recurring payment (for example salary, rent or insurance) keeps happening
-every month with its average amount. A group of transactions (same type
-and category) counts as recurring when it repeats roughly every month
-(between `recurring_min_interval_days` and `recurring_max_interval_days`)
-and its amounts stay within `recurring_amount_tolerance` of their average.
+There are two forecast methods, chosen with the `forecast_method` setting:
+
+- **`trend`** (default): a straight line (linear regression) is fitted through
+  your daily balance. Its slope shows how much the balance changes per day on
+  average. The forecast starts from your current balance and continues with
+  that slope. This includes all spending, also irregular costs like groceries.
+- **`recurring`**: starts from your current balance and assumes that every
+  recurring payment (for example salary, rent or insurance) keeps happening
+  every month with its average amount. Irregular spending is not included,
+  so this method is usually too optimistic.
+
+With the example data, `trend` predicts a small monthly decrease, which is
+close to what really happened, while `recurring` predicts a large increase.
 
 ## Settings
 
 Use the `settings` command to change these values:
 
-| Setting                       | Default | Meaning                                              |
-|-------------------------------|---------|------------------------------------------------------|
-| `income_categories`           | list    | Allowed income categories                            |
-| `expense_categories`          | list    | Allowed expense categories                           |
-| `monthly_expense_limit`       | `0.0`   | Warn when expenses exceed this (0 = no limit)        |
-| `report_months`               | `3`     | Default number of months in reports                  |
-| `recurring_min_interval_days` | `25`    | Shortest gap still counted as "monthly"              |
-| `recurring_max_interval_days` | `35`    | Longest gap still counted as "monthly"               |
-| `recurring_amount_tolerance`  | `0.15`  | Allowed amount variation (0.15 = 15%)                |
-| `low_savings_rate`            | `0.10`  | Below this share of income, suggest saving more      |
-| `high_spending_share`         | `0.30`  | Above this share of income, flag the category        |
-| `forecast_months`             | `3`     | Months ahead shown in the forecast chart             |
+| Setting                       | Default | Meaning                                                |
+|-------------------------------|---------|--------------------------------------------------------|
+| `income_categories`           | list    | Allowed income categories                              |
+| `expense_categories`          | list    | Allowed expense categories                             |
+| `monthly_expense_limit`       | `0.0`   | Warn when expenses exceed this (0 = no limit)          |
+| `report_months`               | `3`     | Default number of months in reports                    |
+| `recurring_min_interval_days` | `25`    | Shortest gap still counted as "monthly"                |
+| `recurring_max_interval_days` | `35`    | Longest gap still counted as "monthly"                 |
+| `recurring_amount_tolerance`  | `0.15`  | Allowed amount variation (0.15 = 15%)                  |
+| `low_savings_rate`            | `0.10`  | Below this share of income, suggest saving more        |
+| `high_spending_share`         | `0.30`  | Above this share of income, flag the category          |
+| `forecast_months`             | `3`     | Months ahead shown in the forecast chart               |
+| `forecast_method`             | `trend` | `trend` (linear regression) or `recurring`             |
+| `emergency_fund_months`       | `3`     | Months of expenses to keep before suggesting to invest |
 
 The category `other` is required and cannot be removed.
 
